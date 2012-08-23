@@ -2,4 +2,4 @@
 
 Project for my Master degree
 
-
+WebApp responsible for managing the DICOM files
