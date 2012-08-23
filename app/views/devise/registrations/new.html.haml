@@ -1,0 +1,10 @@
+- provide(:title, 'Create account')
+.centered
+  %h1 Create account
+  .registration
+    = form_for(resource, :as => :user, :url => registration_path(:user)) do |f|
+      = render 'users/fields', f: f
+      %div
+        = f.submit "Create new account", class: "btn btn-large btn-primary"
+      %div  
+        = render "devise/shared/links"

@@ -1,0 +1,8 @@
+= f.input :name
+= f.input :description
+- if !params[:id].nil?
+  = f.input :curr_cat_id, as: :hidden, input_html: { :value => current_catalog.id } 
+- if f.object.new_record?
+  = f.submit "Create catalog", class: "btn btn-primary"
+- else
+  = f.submit "Edit catalog", class: "btn btn-primary"

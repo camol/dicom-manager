@@ -1,0 +1,288 @@
+@import "bootstrap";
+
+/* mixins, variables, etc. */
+
+$grayMediumLight: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin border-radius($radius) {
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin base_props {
+  margin: 0px;
+  padding: 0px;
+}
+
+@mixin base_list_props {
+  list-style-type: none;
+  @include base_props;
+}
+
+@mixin navbar {
+  @include border-radius(15px);
+  background-color: black;
+}
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+
+/* buttons */
+
+.btn-primary {
+  margin-top: 10px;
+}
+
+.content {
+  display: block;
+}
+.timestamp {
+  color: $grayLight;
+}
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
+
+/* header */
+
+#container {
+  width: auto;
+}
+
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  height: auto;
+  @include box_sizing;
+}
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}
+
+/* universal */
+
+html {
+  overflow-y: scroll;
+  @include base_props;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  @include base_props;
+}
+
+div {
+  border: 1px dashed red;
+}
+/*
+.container {
+  height: auto !important;
+  min-height: 100%;
+  height: 100%;
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+}
+*/
+#main_content {
+  border: 1px dashed red;
+  padding-bottom: 25px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+	h1 {
+	  margin-bottom: 10px;
+	}
+}
+
+/* Centering content */
+.centered {
+  width: 100%;
+  text-align: center;
+
+  div {
+    width: 50%;
+    margin: 0px auto;
+    text-align: left;
+  }
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  border: 1px dashed red;
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.7em;
+  letter-spacing: -1px;
+  margin-top: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $grayLight;
+}
+
+h3 {
+  font-size: 1.6em;
+  letter-spacing: -1px;
+  margin-top: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $grayLight;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+
+/* session basic fields aligment */
+.session {
+  div {
+    border: 1px dashed red;
+    width: 200px auto;
+    position: center;
+  }
+
+  input, label {
+    font-size: medium;
+    text-align: center;
+  }
+
+  label {
+    margin-bottom: 0px;
+  }
+
+  input {
+    width: 200px auto;
+    margin-left: 15%;
+  }
+
+  #sign_in_btn {
+    margin-top: 5px;
+    input {
+      margin-left: 0%;
+    }
+  }
+}
+
+.registration {
+  @extend .session;
+  border: 1px dashed red;
+
+  input {
+    margin-left: 33%;
+  }
+
+  div {
+    input {
+      margin-left: 0%;
+    }
+  }
+}
+
+.reset_pass {
+  @extend .session;
+  #send_pass {
+    input {
+      margin-left: -40%;
+    }
+  }
+}
+
+.checkbox_label {
+  input {
+    position: absolute;
+    margin-left: 0%;
+  }
+
+  label {
+    margin-left: -180px;
+    font-size: small;
+  }
+}
+
+/* footer */
+
+footer {
+  border: 1px dashed red;
+  @include navbar;
+  height: 25px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  ul {
+    @include base_list_props;
+    list-style-type: none;
+    
+    a {
+      text-decoration: none;
+      color: $white;
+      width: 100px;
+      background-color: $black;
+    }
+
+    li {
+      float: right;
+      width: 70px;
+      text-align: center;
+      font-size: medium;
+      margin-right: 4px;
+      margin-top: 5px;
+    }
+
+  }
+}

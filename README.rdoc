@@ -1,0 +1,5 @@
+== Dicom-Manager
+
+Project for my Master degree
+
+

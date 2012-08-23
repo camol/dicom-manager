@@ -1,0 +1,7 @@
+.desktop
+  %ul.elements
+    - if !@catalogs.nil?
+      - @catalogs.each do |cat|
+        %li
+          = cat.id
+          = link_to cat.name, cat

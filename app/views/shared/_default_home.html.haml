@@ -1,0 +1,10 @@
+.center.hero-unit
+  %h1 Welcome to the Dicom Browser
+  %h2
+    This is a web application which lets you easily manage your DICOM data
+  %h3
+    In order to use it You have to go through the account creation process
+  = link_to "Create account", new_user_registration_path, class: "btn btn-large btn-primary"
+  %h3
+    If You already have an existing account
+  = link_to "Sign in", new_user_session_path, class: "btn btn-large btn-primary"

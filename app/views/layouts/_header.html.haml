@@ -1,0 +1,43 @@
+.navbar.navbar-static
+  .navbar-inner
+    .container#container
+      %ul.nav@navigation
+        %li.dropdown
+          %a.dropdown-toggle#menu@button{:href => "#",:data => {:toggle => "dropdown"}}
+            Menu
+            %b.caret
+          %ul.dropdown-menu@menu{:aria => {"labelledby" => "menu"}}
+            %li
+              = link_to "Files", catalogs_path
+            %li.divider
+            %li
+              = link_to "Sign out", destroy_user_session_path, method: "delete"
+        %li.dropdown
+          %a.dropdown-toggle#account@button{:href => "#", :data => {:toggle => "dropdown"}}
+            Account
+            %b.caret
+          %ul.dropdown-menu@menu{:aria => {"labelledby" => "account"}}
+            %li
+              = link_to "Profile", current_user
+            %li
+              = link_to "History", '#'
+            %li
+              = link_to "Edit", edit_user_registration_path
+        %li.dropdown
+          %a.dropdown-toggle#manage@button{:href => "#",:data => {:toggle => "dropdown"}}
+            Manage
+            %b.caret
+          %ul.dropdown-menu@menu{:aria => {"labelledby" => "menu"}}
+            %li
+              = link_to "Accounts", '#'
+            %li
+              = link_to "Permissions", '#'
+            %li
+              = link_to "Groups", '#'
+            %li
+              = link_to "Projects", '#'
+      %ul.nav.pull-right
+        %li
+          = link_to "Home", root_path
+        %li
+          = link_to "Help", help_path
