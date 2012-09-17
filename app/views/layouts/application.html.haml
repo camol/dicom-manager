@@ -7,11 +7,11 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
     = render 'layouts/shim'
-  %body.container
+  %body.container#body-container
   \#{render 'layouts/header'}
   - flash.each do |key, value|
     = content_tag(:div, value, class: "alert alert-#{key}")
-  #main_content
+  .content 
     = yield
   = render 'layouts/footer'
   = debug(params) if Rails.env.development?

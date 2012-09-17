@@ -2,22 +2,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+# Opens dropdowns on mouseover event
 $ ->
-  autodrop = (drop_type) ->  
-    $dropdowns = $(drop_type)
-    $dropdowns.on("mouseover", ->
-      $this = $(this)
-      $this.prop "hoverTimeout", clearTimeout($this.prop("hoverTimeout"))  if $this.prop("hoverTimeout")
-      $this.prop "hoverIntent", setTimeout(->
-        $this.addClass "hover"
-        , 250)
-    ).on "mouseleave", ->
-      $this = $(this)
-      $this.prop "hoverIntent", clearTimeout($this.prop("hoverIntent"))  if $this.prop("hoverIntent")
-      $this.prop "hoverTimeout", setTimeout(->
-        $this.removeClass "hover"
-        , 250)
+  $("li.dropdown").mouseover(->
+    $(this).toggleClass "open"
+  ).mouseout ->
+    $(this).toggleClass "open"
 
-
-        #autodrop("ul.dropdown")
-
+# Disables the default bootstrap behaviour for dropdown
+  $("a.dropdown-toggle").click (event) ->
+    event.preventDefault()
+    false

@@ -10,9 +10,6 @@ class CatalogsController < ApplicationController
     @catalogs = current_user.catalogs.roots
   end
   
-  def new
-  end
-
   def create
     if params[:catalog][:curr_cat_id].nil?
       catalog = current_user.catalogs.build(params[:catalog])

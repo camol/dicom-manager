@@ -1,0 +1,8 @@
+= render "shared/sidebar"
+.desktop
+  .container-fluid
+    .row-fluid
+      .span12
+        - if current_catalog
+          = render 'catalogs/catalog_path'
+        = render 'shared/catalogs'

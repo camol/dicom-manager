@@ -1,5 +1,7 @@
-= render 'shared/catalogs'
-= simple_form_for @new_catalog do |f|
-  = render 'catalogs/catalog_form', f: f 
-= simple_form_for current_catalog do |f|
-  = render 'catalogs/catalog_form', f: f 
+- provide(:title, "#{ current_catalog.name }")
+= render 'shared/desktop'
+/
+  = simple_form_for @new_catalog do |f|
+    = render 'catalogs/catalog_form', f: f 
+  = simple_form_for current_catalog do |f|
+    = render 'catalogs/catalog_form', f: f 

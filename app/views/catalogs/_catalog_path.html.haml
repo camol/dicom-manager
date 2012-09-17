@@ -1,0 +1,12 @@
+.path
+  %ul.breadcrumb
+    %li
+      = link_to "root", catalogs_path
+      %span.divider /
+    - if !current_catalog.is_root?
+      - current_catalog.ancestors.all.each do |cat|
+        %li 
+          = link_to cat.name, cat
+          %span.divider /
+    %li.active
+      = current_catalog.name

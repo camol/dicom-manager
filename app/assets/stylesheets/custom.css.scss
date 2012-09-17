@@ -11,8 +11,24 @@ $grayMediumLight: #eaeaea;
 }
 
 @mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -khtml-border-radius: $radius;    
   -moz-border-radius: $radius;
   border-radius: $radius;
+}
+
+@mixin top-right-rounded-corner($radius) {
+    -webkit-border-top-right-radius: $radius;
+    -khtml-border-radius-topright: $radius;  
+    -moz-border-radius-topright: $radius;
+    border-top-right-radius: $radius;
+}
+
+@mixin bottom-right-rounded-corner($radius) {
+    -webkit-border-bottom-right-radius: $radius;
+    -khtml-border-radius-bottomright: $radius;  
+    -moz-border-radius-bottomright: $radius;
+    border-bottom-right-radius: $radius;
 }
 
 @mixin base_props {
@@ -48,6 +64,7 @@ $grayMediumLight: #eaeaea;
 
 .content {
   display: block;
+  height: 100%;
 }
 .timestamp {
   color: $grayLight;
@@ -56,24 +73,11 @@ $grayMediumLight: #eaeaea;
   float: left;
   margin-right: 10px;
 }
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
-  }
-}
-
-/* header */
-
-#container {
-  width: auto;
-}
 
 
 /* forms */
 
 input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
   height: auto;
   @include box_sizing;
 }
@@ -97,29 +101,24 @@ html {
   overflow-y: scroll;
   @include base_props;
   height: 100%;
+  background: {
+    image: url("main.jpg");
+  }
 }
 
 body {
   height: 100%;
   @include base_props;
+  background-color: transparent;
 }
 
-div {
-  border: 1px dashed red;
+#body-container {
+    width: 100%;
 }
-/*
-.container {
-  height: auto !important;
-  min-height: 100%;
-  height: 100%;
-  position: relative;
-  width: 90%;
-  margin: 0 auto;
-}
-*/
-#main_content {
-  border: 1px dashed red;
+
+.content {
   padding-bottom: 25px;
+  height: 400px;
 }
 
 section {
@@ -130,25 +129,6 @@ textarea {
   resize: vertical;
 }
 
-.center {
-  text-align: center;
-	h1 {
-	  margin-bottom: 10px;
-	}
-}
-
-/* Centering content */
-.centered {
-  width: 100%;
-  text-align: center;
-
-  div {
-    width: 50%;
-    margin: 0px auto;
-    text-align: left;
-  }
-}
-
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -156,7 +136,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  border: 1px dashed red;
   font-size: 3em;
   letter-spacing: -2px;
   margin-top: 30px;
@@ -187,102 +166,66 @@ p {
   line-height: 1.7em;
 }
 
-
-/* session basic fields aligment */
-.session {
-  div {
-    border: 1px dashed red;
-    width: 200px auto;
-    position: center;
-  }
-
-  input, label {
-    font-size: medium;
+.catalog-content {
+  .element {
+    float: left;
     text-align: center;
   }
-
-  label {
-    margin-bottom: 0px;
-  }
-
-  input {
-    width: 200px auto;
-    margin-left: 15%;
-  }
-
-  #sign_in_btn {
-    margin-top: 5px;
-    input {
-      margin-left: 0%;
-    }
-  }
 }
 
-.registration {
-  @extend .session;
-  border: 1px dashed red;
-
-  input {
-    margin-left: 33%;
-  }
-
-  div {
-    input {
-      margin-left: 0%;
-    }
-  }
-}
-
-.reset_pass {
-  @extend .session;
-  #send_pass {
-    input {
-      margin-left: -40%;
-    }
-  }
-}
-
-.checkbox_label {
-  input {
-    position: absolute;
-    margin-left: 0%;
-  }
-
-  label {
-    margin-left: -180px;
-    font-size: small;
-  }
-}
-
-/* footer */
-
-footer {
-  border: 1px dashed red;
-  @include navbar;
-  height: 25px;
-  position: absolute;
+.footer {
+  position: fixed;
   bottom: 0;
   width: 100%;
+}
 
-  ul {
-    @include base_list_props;
-    list-style-type: none;
-    
-    a {
-      text-decoration: none;
-      color: $white;
-      width: 100px;
-      background-color: $black;
-    }
+.desktop {
+  margin-left: 50px;
+}
 
-    li {
-      float: right;
-      width: 70px;
-      text-align: center;
-      font-size: medium;
-      margin-right: 4px;
-      margin-top: 5px;
-    }
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 100px;
+  width: 10px;
+}
 
-  }
+.show {
+  width: 150px;
+}
+
+.side-on {
+  width: 200px;
+  height: 40px;
+  background-color: black;
+  @include bottom-right-rounded-corner(10px);
+  @include top-right-rounded-corner(10px);
+}
+
+.side-off {
+  width: 50px;
+  height: 40px;
+}
+
+.side-link {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    height: 20px;
+    display: block;
+    float: right;
+    @include bottom-right-rounded-corner(10px);
+    @include top-right-rounded-corner(10px);
+}
+
+#sidebar-menu {
+  display: none;
+  @include border-radius(0);
+  @include bottom-right-rounded-corner(10px);
+}
+
+#arrow {
+  @include bottom-right-rounded-corner(10px);
+  @include top-right-rounded-corner(10px);
 }

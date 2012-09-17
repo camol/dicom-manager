@@ -52,6 +52,8 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    font-awesome-rails (0.4.0)
+      railties (~> 3.1)
     haml (3.1.7)
     haml-rails (0.3.4)
       actionpack (~> 3.0)
@@ -65,6 +67,9 @@ GEM
     jquery-rails (2.1.1)
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
+    jquery-ui-rails (2.0.0)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.7.5)
     mail (2.4.4)
       i18n (>= 0.4.0)
@@ -140,9 +145,11 @@ DEPENDENCIES
   bootstrap-will_paginate (= 0.0.6)
   coffee-rails (~> 3.2.1)
   devise
+  font-awesome-rails
   haml-rails
   hpricot
   jquery-rails
+  jquery-ui-rails
   mysql2
   rails (= 3.2.3)
   role-haml

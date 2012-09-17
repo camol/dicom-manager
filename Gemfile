@@ -10,6 +10,7 @@ gem 'role-haml'
 gem 'simple_form'
 gem 'ancestry'
 gem 'mysql2'
+gem 'font-awesome-rails'  
 
 group :development do
   gem 'annotate', '~> 2.4.1.beta'
@@ -24,6 +25,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-ui-rails'
 end
 
 gem 'jquery-rails'

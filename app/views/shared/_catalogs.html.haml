@@ -1,7 +1,10 @@
-.desktop
-  %ul.elements
-    - if !@catalogs.nil?
-      - @catalogs.each do |cat|
-        %li
-          = cat.id
-          = link_to cat.name, cat
+.catalog-content
+  - if !@catalogs.nil?
+    - @catalogs.each do |cat|
+      .element
+        - if cat.description.present? 
+          = link_to image_tag('folder-close.png', class: 'folder', rel: 'tooltip', data: { placement: 'left', 'original-title' => "#{ cat.description }" }), cat
+        - else
+          = link_to image_tag('folder-close.png', class: 'folder'), cat
+        %br
+        = cat.name
