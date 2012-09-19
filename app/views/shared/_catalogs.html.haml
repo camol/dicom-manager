@@ -3,7 +3,7 @@
     - @catalogs.each do |cat|
       .element
         - if cat.description.present? 
-          = link_to image_tag('folder-close.png', class: 'folder', rel: 'tooltip', data: { placement: 'left', 'original-title' => "#{ cat.description }" }), cat
+          = link_to image_tag('folder-close.png', class: 'folder', rel: 'tooltip', data: { placement: 'top', 'original-title' => "#{ cat.description }" }), cat
         - else
           = link_to image_tag('folder-close.png', class: 'folder'), cat
         %br
