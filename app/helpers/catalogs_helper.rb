@@ -16,4 +16,10 @@ module CatalogsHelper
     end
     path += "/#{catalog.name}"   
   end
+
+  def catalog_form_for(catalog)
+    simple_form_for catalog do |f|
+      render 'catalogs/catalog_form', f: f
+    end
+  end
 end

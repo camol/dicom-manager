@@ -9,3 +9,4 @@ $ ->
     @src = @src.replace("folder-open.png", "folder-close.png")
 
   $("img[rel=tooltip]").tooltip()
+
