@@ -1,0 +1,6 @@
+.hide
+  - if current_catalog.present?
+    .edit_cat_form
+      = render 'catalogs/catalog_form', catalog: current_catalog
+  .new_cat_form
+    = render 'catalogs/catalog_form', catalog: @new_catalog

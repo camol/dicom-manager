@@ -1,6 +1,26 @@
 jQuery.fn.exists = ->
   jQuery(this).length > 0
+  ###
+popover_form = 
+  if $('.btn-popover').exists()
+    alert 'po ifie'
+    $('.btn-popover').bind 'click', (e) =>
+      form_to_display = $($(e.target).data('popover_content_selector'))
 
+    $(".btn-popover").popover(
+        html: true
+        trigger: 'manual'
+        content: ->
+          form_to_display
+      ).click((e) ->
+        e.preventDefault()
+        e.stopPropagation()
+        if $("div.popover-inner").exists()
+          $(this).popover "hide" 
+        else
+          $(this).popover "show"
+      )
+      ###
 $ ->
   $("a.side-link").click ->
     $("a.side-link i").toggleClass "icon-chevron-right icon-chevron-left"
@@ -9,28 +29,22 @@ $ ->
       width: "toggle"
     , 100
     $("div.sidebar").toggleClass "show"
+  
+  if $('.btn-popover').exists()
+    form_to_display = $('.btn-popover').bind 'click', (e) ->
+      $($(e.target).data('popover_content_selector'))
 
-  $("#new_cat_btn").popover(
-    html: true
-    trigger: 'manual'
-    content: ->
-      $("#cat_form").html()
-  ).click((e) ->
-    e.preventDefault()
-    e.stopPropagation()
-    if $("div.popover-inner").exists()
-      $(this).popover "hide" 
-    else
-      $(this).popover "show"
-  )
+      $(".btn-popover").popover(
+          html: true
+          trigger: 'manual'
+          content: ->
+            form_to_display.html()
+        ).click((e) ->
+          e.preventDefault()
+          e.stopPropagation()
+          if $("div.popover-inner").exists()
+            $(this).popover "hide" 
+          else
+            $(this).popover "show"
+        )
 
-  ###
-  $("html").click (e) ->
-    if $("div.popover-inner").exists()
-      alert "popover exists"
-      if $(e.target).not("div")
-        alert $(e.target).html()
-      else
-        $("#new_cat_btn").popover "hide"
-        alert "hide"
-  ###

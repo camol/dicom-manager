@@ -5,5 +5,9 @@
   .well.sidebar-nav#sidebar-menu
     %ul.nav.nav-list
       %li.nav-header
-        %a.btn#new_cat_btn{ :href => "#", rel: 'popover', data: {placement: 'right', 'original-title' => "Edit" } }
-          Edit
+        - if current_catalog.present?
+          %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.edit_cat_form', placement: 'right', 'original-title' => "Edit" } }
+            Edit
+        %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.new_cat_form', placement: 'right', 'original-title' => "New" } }
+          New
+
