@@ -1,26 +1,6 @@
 jQuery.fn.exists = ->
   jQuery(this).length > 0
-  ###
-popover_form = 
-  if $('.btn-popover').exists()
-    alert 'po ifie'
-    $('.btn-popover').bind 'click', (e) =>
-      form_to_display = $($(e.target).data('popover_content_selector'))
 
-    $(".btn-popover").popover(
-        html: true
-        trigger: 'manual'
-        content: ->
-          form_to_display
-      ).click((e) ->
-        e.preventDefault()
-        e.stopPropagation()
-        if $("div.popover-inner").exists()
-          $(this).popover "hide" 
-        else
-          $(this).popover "show"
-      )
-      ###
 $ ->
   $("a.side-link").click ->
     $("a.side-link i").toggleClass "icon-chevron-right icon-chevron-left"
@@ -29,22 +9,29 @@ $ ->
       width: "toggle"
     , 100
     $("div.sidebar").toggleClass "show"
-  
-  if $('.btn-popover').exists()
-    form_to_display = $('.btn-popover').bind 'click', (e) ->
-      $($(e.target).data('popover_content_selector'))
 
-      $(".btn-popover").popover(
-          html: true
+    if $('.btn-popover').exists()
+      $('.btn-popover').each (index, element) =>
+
+        $(element).popover
           trigger: 'manual'
-          content: ->
-            form_to_display.html()
-        ).click((e) ->
+          content: => $($(element).data('popover_content_selector')).html()
+
+        $(element).bind 'click', (e) =>
           e.preventDefault()
           e.stopPropagation()
-          if $("div.popover-inner").exists()
-            $(this).popover "hide" 
-          else
-            $(this).popover "show"
-        )
 
+          $btn = $(e.target)
+          
+          if $('.switched-on').exists()
+            $('.switched-on').each (index, element) =>
+              if !$btn.is($(element))
+                $(element).popover('toggle')
+                $(element).toggleClass "switched-on"
+                $(element).toggleClass "active"
+
+          $btn.popover('toggle')
+          $btn.toggleClass "switched-on"
+          $btn.toggleClass "active"
+          
+          true

@@ -3,11 +3,21 @@
     %a.side-link{:href => "#"}
       %i.icon-chevron-right
   .well.sidebar-nav#sidebar-menu
-    %ul.nav.nav-list
+    %ul.nav-list.side-nav-list
       %li.nav-header
-        - if current_catalog.present?
-          %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.edit_cat_form', placement: 'right', 'original-title' => "Edit" } }
-            Edit
+        Catalog
+      %li.divider
+      %li
         %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.new_cat_form', placement: 'right', 'original-title' => "New" } }
+          %i.icon-folder-close
           New
+      %li.divider
+      - if current_catalog.present?
+        %li
+          %a.btn.btn-large.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.edit_cat_form', placement: 'right', 'original-title' => "Edit" } }
+            %i.icon-edit
+            Edit
+      %li.divider
+      %li
+        = link_to '<i class = "icon-remove"></i> Delete'.html_safe , { controller: 'catalogs', method: :delete, action: 'destroy' }, confirm: "You will lose all data which this catalog contains (folders and files). Are You sure?", class: 'btn btn-danger' 
 

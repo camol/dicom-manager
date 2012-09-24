@@ -32,4 +32,13 @@ class CatalogsController < ApplicationController
       redirect_to catalogs_path
     end
   end
+
+  def destroy
+    parent_catalog = current_catalog.parent
+    catalog = current_catalog
+    if catalog.destroy
+      flash[:success] = "Catalog deleted"
+    end
+    redirect_to parent_catalog
+  end
 end

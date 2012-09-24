@@ -68,7 +68,10 @@ $grayMediumLight: #eaeaea;
   margin-top: 10px;
 }
 
-.content {
+.nav > li > a:hover {
+}
+
+  .content {
   display: block;
   height: 100%;
 }
@@ -206,11 +209,11 @@ p {
 }
 
 .show {
-  width: 150px;
+  width: 200px;
 }
 
 .side-on {
-  width: 200px;
+  width: 250px;
   height: 40px;
   background-color: black;
   @include bottom-right-rounded-corner(10px);
@@ -242,4 +245,8 @@ p {
 #arrow {
   @include bottom-right-rounded-corner(10px);
   @include top-right-rounded-corner(10px);
+}
+
+.side-nav-list {
+  list-style: none;
 }
