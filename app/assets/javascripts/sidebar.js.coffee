@@ -9,6 +9,11 @@ $ ->
       width: "toggle"
     , 100
     $("div.sidebar").toggleClass "show"
+    $("div.sidebar-title").animate
+      left: "toggle"
+    , 100
+    $("div.sidebar-title").toggleClass "hide" 
+
 
     if $('.btn-popover').exists()
       $('.btn-popover').each (index, element) =>

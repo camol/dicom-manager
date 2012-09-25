@@ -1,23 +1,29 @@
 .sidebar
+  .sidebar-title.hide
+    Actions
   .side-off#arrow
     %a.side-link{:href => "#"}
       %i.icon-chevron-right
   .well.sidebar-nav#sidebar-menu
     %ul.nav-list.side-nav-list
-      %li.nav-header
+      %li.side-nav-header
         Catalog
-      %li.divider
       %li
         %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.new_cat_form', placement: 'right', 'original-title' => "New" } }
           %i.icon-folder-close
           New
-      %li.divider
       - if current_catalog.present?
         %li
-          %a.btn.btn-large.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.edit_cat_form', placement: 'right', 'original-title' => "Edit" } }
+          %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.edit_cat_form', placement: 'right', 'original-title' => "Edit" } }
             %i.icon-edit
             Edit
-      %li.divider
-      %li
-        = link_to '<i class = "icon-remove"></i> Delete'.html_safe , { controller: 'catalogs', method: :delete, action: 'destroy' }, confirm: "You will lose all data which this catalog contains (folders and files). Are You sure?", class: 'btn btn-danger' 
-
+        %li.last-item
+          = link_to '<i class = "icon-remove"></i> Delete'.html_safe, current_catalog, method: :delete, confirm: "You will lose all data which this catalog contains (folders and files). Are You sure?", class: 'btn btn-danger' 
+      - if !current_catalog.has_files?
+        %li.side-nav-header
+          Files
+        %li
+          %a.btn.btn-popover{ href: "#" }
+            %i.icon-file
+            New
+          

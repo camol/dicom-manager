@@ -34,11 +34,13 @@ class CatalogsController < ApplicationController
   end
 
   def destroy
-    parent_catalog = current_catalog.parent
-    catalog = current_catalog
+    catalog = Catalog.find(params[:id])
+    parent_catalog = catalog.parent
     if catalog.destroy
       flash[:success] = "Catalog deleted"
+      redirect_to parent_catalog
+    else
+      flash[:failure] = "Could not delete current catalog"
     end
-    redirect_to parent_catalog
   end
 end

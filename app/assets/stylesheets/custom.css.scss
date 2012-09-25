@@ -202,10 +202,19 @@ p {
 
 /* Sidebar */
 .sidebar {
+  $top: 100px;
   position: fixed;
   left: 0;
-  top: 100px;
+  top: $top;
   width: 10px;
+
+  .sidebar-title {
+    color: whiteSmoke;
+    position: fixed;
+    top: $top + 10px;
+    left: 80px;
+    font-size: large;
+  }
 }
 
 .show {
@@ -249,4 +258,34 @@ p {
 
 .side-nav-list {
   list-style: none;
+  margin-left: 15px;
+  margin-right: 15px;
+  
+  .side-nav-header {
+    font-size: large;
+    font-weight: bold;
+    line-height: 18px;
+    color: #999;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  i {
+    vertical-align: middle;
+    height: 19px;
+  }
+
+  .btn {
+    font-size: 15px;
+  }
+
+  li {
+    padding: 5px; 
+  }
+
+  .last-item {
+    margin-bottom: 15px;
+  }
 }
+
+
