@@ -19,11 +19,13 @@
             Edit
         %li.last-item
           = link_to '<i class = "icon-remove"></i> Delete'.html_safe, current_catalog, method: :delete, confirm: "You will lose all data which this catalog contains (folders and files). Are You sure?", class: 'btn btn-danger' 
-      - if !current_catalog.has_files?
-        %li.side-nav-header
-          Files
-        %li
-          %a.btn.btn-popover{ href: "#" }
-            %i.icon-file
-            New
-          
+        - if !current_catalog.has_files?
+          %li.side-nav-header
+            Files
+          %li
+            %a.btn#btnModal{ href: "#myModal", role: 'button', 'data-toggle' => 'modal' }
+              %i.icon-file
+              New
+
+= render 'shared/modal'
+= render 'shared/catalog_forms'

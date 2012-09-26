@@ -40,3 +40,11 @@ $ ->
           $btn.toggleClass "active"
           
           true
+
+    $('#myModal').modal
+
+    ###
+  $('#btnModal').bind 'click', =>
+    $('#myModal').toggleClass 'hide'  
+    true
+    ###
