@@ -1,12 +1,10 @@
-.modal.hide#myModal{ tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => 'true' }
+.modal.hide#myModal{ overflow: 'hidden', tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => 'true' }
   .modal-header
-    %button.close.modal-dismiss{ type: 'button', 'data-dismiss' => 'modal', 'aria-hidden' => 'true' }
+    %button.close{ type: 'button', 'data-dismiss' => 'modal', 'aria-hidden' => 'true' }
       X
     %h3#myModalLabel
       Modal Header
   .modal-body
-    %p
-      Body Babe
   .modal-footer
     %button.btn.modal-dismiss{ 'data-dismiss' => 'modal', 'aria-hidden' => 'true' }
       Close

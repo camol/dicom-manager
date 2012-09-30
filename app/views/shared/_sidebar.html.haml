@@ -23,9 +23,10 @@
           %li.side-nav-header
             Files
           %li
-            %a.btn#btnModal{ href: "#myModal", role: 'button', 'data-toggle' => 'modal', remote: 'true'}
+            %a.btn.btnModal{ href: "#myModal", role: 'button', data: { toggle: 'modal', 'modal_content_selector' => '.file_upload' }, remote: 'true'}
               %i.icon-file
               New
 
 = render 'shared/modal'
 = render 'shared/catalog_forms'
+= render 'shared/file_upload'

@@ -41,12 +41,28 @@ $ ->
           
           true
 
-  if $('#myModal').exists()
-    $modal = $('#myModal')
-    fadeTime = 1000
-   
-    $('#btnModal').bind 'click', -> 
+  if $('.btnModal').exists()
+    $('.btnModal').bind 'click', -> 
+      $modal = $('#myModal')
+      fadeTime = 1000
+      $('.modal-body').html($($(this).data('modal_content_selector')).html())
+      #$modal.addClass 'modal-on'
       $modal.animate
         top: 'toggle'
         opacity: 'toggle'
       , fadeTime
+      
+      
+      ###  
+      $('html').bind 'click', (e) ->
+      alert $(e.target).is('.modal-backdrop')
+
+      if $modal.hasClass 'modal-on'
+        alert 'modal jest'
+        $('.modal-backdrop').bind 'click', (e)->
+          alert 'tlo'
+          $modal.animate
+            top: 'toggle'
+            opacity: 'toggle'
+          , fadeTime
+          ### 
