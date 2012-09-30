@@ -16,20 +16,20 @@ $ ->
 
 
     if $('.btn-popover').exists()
-      $('.btn-popover').each (index, element) =>
+      $('.btn-popover').each (index, element) ->
 
         $(element).popover
           trigger: 'manual'
           content: => $($(element).data('popover_content_selector')).html()
 
-        $(element).bind 'click', (e) =>
+        $(element).bind 'click', (e) ->
           e.preventDefault()
           e.stopPropagation()
 
           $btn = $(e.target)
           
           if $('.switched-on').exists()
-            $('.switched-on').each (index, element) =>
+            $('.switched-on').each (index, element) ->
               if !$btn.is($(element))
                 $(element).popover('toggle')
                 $(element).toggleClass "switched-on"
@@ -41,10 +41,12 @@ $ ->
           
           true
 
-    $('#myModal').modal
-
-    ###
-  $('#btnModal').bind 'click', =>
-    $('#myModal').toggleClass 'hide'  
-    true
-    ###
+  if $('#myModal').exists()
+    $modal = $('#myModal')
+    fadeTime = 1000
+   
+    $('#btnModal').bind 'click', -> 
+      $modal.animate
+        top: 'toggle'
+        opacity: 'toggle'
+      , fadeTime
