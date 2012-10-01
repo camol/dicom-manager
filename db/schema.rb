@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120925213223) do
+ActiveRecord::Schema.define(:version => 20121001194207) do
 
   create_table "catalogs", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(:version => 20120925213223) do
 
   add_index "catalogs", ["ancestry"], :name => "index_catalogs_on_ancestry"
   add_index "catalogs", ["user_id"], :name => "index_catalogs_on_user_id"
+
+  create_table "dicom_files", :force => true do |t|
+    t.string   "dicom_file_name"
+    t.string   "dicom_content_type"
+    t.integer  "dicom_file_size"
+    t.datetime "dicom_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "catalog_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login"

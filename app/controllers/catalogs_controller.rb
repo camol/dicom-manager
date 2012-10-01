@@ -3,6 +3,7 @@ class CatalogsController < ApplicationController
   def show
     @new_catalog = Catalog.new
     @catalogs = current_catalog.children
+    @dicomfile = current_catalog.dicom_files.build
   end
 
   def index

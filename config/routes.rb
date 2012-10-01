@@ -4,8 +4,8 @@ DicomManager::Application.routes.draw do
 
   #resources  
   resources :users
-
   resources :catalogs
+  resources :dicom_files
 
 
   #paths
