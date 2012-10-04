@@ -47,11 +47,7 @@ $ ->
       fadeTime = 1000
       modalCustomClass = $(this).data('modal_content_selector').substring(1)
       $modal.removeClass(modalCustomClass).addClass(modalCustomClass)
-      alert modalCustomClass
-      alert $($(this).data('modal_content_selector')).html()
-      alert $(this).data('modal_content_selector')
-      $('.modal-body').html($($(this).data('modal_content_selector')).html())
-      #$modal.addClass 'modal-on'
+      $('.modal-body').html($($(this).data('modal_content_selector') + ':last').html())
       $modal.animate
         top: 'toggle'
         opacity: 'toggle'

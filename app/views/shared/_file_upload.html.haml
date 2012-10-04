@@ -6,15 +6,19 @@
         .span7
           %span.btn.fileinput-button
             %i.icon-plus
-            %span
-              Add files...
+            %span Add files...
             = f.file_field :dicom
           %button.btn.start{ type: 'submit' }
             %i.icon-upload
-            %span
-              Start upload
+            %span Start upload
           %button.btn.delete{ type: 'button' }
             %i.icon-trash
-            %span
-              Delete
+            %span Delete
           %input.toggle{ type: 'checkbox' }
+        .span5
+          .progress.progress-success.progress-striped.active.fade
+            .bar
+      .fileupload-loading
+      %br
+      %table.table.table-striped
+        %tbody.files{ data: { toggle: 'modal-gallery', target: '#modal-gallery' } }
