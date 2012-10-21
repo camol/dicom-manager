@@ -28,7 +28,7 @@ test:
   database: dicom-manager_test
   pool: 5
   username: root
-  password:
+  password: admin
   socket: /var/run/mysqld/mysqld.sock
 
 production:
