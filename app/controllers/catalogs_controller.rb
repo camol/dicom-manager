@@ -34,6 +34,16 @@ class CatalogsController < ApplicationController
     end
   end
 
+  def update
+    @catalog = Catalog.find(params[:id])
+    if @catalog.update_attributes(params[:catalog].except(:curr_cat_id))
+      flash[:success] = "Catalog updated"
+    else
+      flash[:failure] = "Could not update catalog"
+    end
+    redirect_to @catalog
+  end
+
   def destroy
     catalog = Catalog.find(params[:id])
     parent_catalog = catalog.parent
