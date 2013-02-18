@@ -11,6 +11,7 @@ gem 'simple_form'
 gem 'ancestry'
 gem 'mysql2'
 gem 'font-awesome-rails'
+gem 'kaminari'
 
 group :development do
   gem 'annotate', '~> 2.4.1.beta'
