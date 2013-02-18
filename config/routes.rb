@@ -2,7 +2,11 @@ DicomManager::Application.routes.draw do
 
   devise_for :users, controllers: { registrations: "users/registrations" }
 
-  #resources  
+  namespace :admin do
+    resources :users, constraints: { id: /[^\/]+/ }
+  end
+
+  #resources
   resources :users
   resources :catalogs
   resources :dicom_files

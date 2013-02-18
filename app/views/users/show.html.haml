@@ -1,23 +1,25 @@
 - provide(:title, 'Profile')
+- model_class = User
 %h1 Profile
-.profile
-  %h2 Details
-  .user_details
-    %div
-      Name:
-      = @user.name
-    %div
-      Surname: 
-      = @user.surname
-    %div
-      Login:
-      = @user.login
-    %div
-      Email: 
-      = @user.email
-    %div
-      Signed up:
-      = @user.created_at.to_date.readable_inspect
-  %h3 Recent history
-  .user_history
 
+.row-fluid
+  %table.table.table-condensed.table-hover
+    %tbody
+      %tr
+        %th= model_class.human_attribute_name(:name) + ':'
+        %td= @user.name
+      %tr
+        %th= model_class.human_attribute_name(:surname) + ':'
+        %td= @user.surname
+      %tr
+        %th= model_class.human_attribute_name(:login) + ':'
+        %td= @user.login
+      %tr
+        %th= model_class.human_attribute_name(:email) + ':'
+        %td= @user.email
+      %tr
+        %th= 'Signed up:'
+        %td= @user.created_at
+
+.form_actions
+  = link_to "Edit account", edit_user_registration_path(@user), class: 'btn'

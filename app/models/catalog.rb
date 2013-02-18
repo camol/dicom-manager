@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: catalogs
+#
+#  id          :integer(4)      not null, primary key
+#  name        :string(255)
+#  description :string(255)
+#  user_id     :integer(4)
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
+#  ancestry    :string(255)
+#  has_files   :boolean(1)      default(FALSE)
+#
+
 class Catalog < ActiveRecord::Base
   # Asign nested structure
   has_ancestry
@@ -19,17 +33,4 @@ class Catalog < ActiveRecord::Base
   end
 
 end
-# == Schema Information
-#
-# Table name: catalogs
-#
-#  id          :integer(4)      not null, primary key
-#  name        :string(255)
-#  description :string(255)
-#  user_id     :integer(4)
-#  created_at  :datetime        not null
-#  updated_at  :datetime        not null
-#  ancestry    :string(255)
-#  has_files   :boolean(1)      default(FALSE)
-#
 

@@ -1,9 +1,3 @@
-class DicomFile < ActiveRecord::Base
-  attr_accessible :dicom
-  has_attached_file :dicom
-
-  belongs_to :catalog
-end
 # == Schema Information
 #
 # Table name: dicom_files
@@ -15,5 +9,13 @@ end
 #  dicom_updated_at   :datetime
 #  created_at         :datetime        not null
 #  updated_at         :datetime        not null
+#  catalog_id         :integer(4)
 #
+
+class DicomFile < ActiveRecord::Base
+  attr_accessible :dicom
+  has_attached_file :dicom
+
+  belongs_to :catalog
+end
 
