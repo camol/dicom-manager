@@ -1,11 +1,13 @@
-.catalog-content
-  - if !@catalogs.nil?
-    - @catalogs.each do |cat|
-      .element
-        - if cat.description.present? 
-          = link_to image_tag('folder-close.png', class: 'folder', rel: 'tooltip', data: { placement: 'top', 'original-title' => "#{ cat.description }" }), cat
-        - else
-          = link_to image_tag('folder-close.png', class: 'folder'), cat
-        %br
-        = cat.name
+- if @catalogs.any?
+  .row-fluid
+    .span12.breadcrumb#dir-cont
+      .catalog-content
+        - @catalogs.each do |cat|
+          .element
+            - if cat.description.present?
+              = link_to image_tag('folder-close.png', class: 'folder', rel: 'tooltip', data: { placement: 'top', 'original-title' => "#{ cat.description }" }), cat
+            - else
+              = link_to image_tag('folder-close.png', class: 'folder'), cat
+            %br
+            = cat.name
 
