@@ -18,6 +18,7 @@ group :development do
   gem 'annotate', '~> 2.4.1.beta'
   gem 'ruby_parser'
   gem 'hpricot'
+  gem 'debugger'
 end
 
 
@@ -33,6 +34,7 @@ end
 gem 'jquery-rails'
 gem 'jquery-fileupload-rails'
 gem 'paperclip'
+gem 'twitter-bootstrap-rails'
 
 group :production do
   gem 'pg', '0.12.2'

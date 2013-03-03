@@ -3,14 +3,13 @@ class CatalogsController < ApplicationController
   def show
     @new_catalog = Catalog.new
     @catalogs = current_catalog.children
-    @dicomfile = current_catalog.dicom_files.build
   end
 
   def index
     @new_catalog = Catalog.new
     @catalogs = current_user.catalogs.roots
   end
-  
+
   def create
     if params[:catalog][:curr_cat_id].nil?
       catalog = current_user.catalogs.build(params[:catalog])

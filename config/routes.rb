@@ -8,8 +8,9 @@ DicomManager::Application.routes.draw do
 
   #resources
   resources :users
-  resources :catalogs
-  resources :dicom_files
+  resources :catalogs do
+    resources :dicom_files, only: [:create, :destroy]
+  end
 
 
   #paths
