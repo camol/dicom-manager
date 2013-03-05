@@ -9,7 +9,10 @@ DicomManager::Application.routes.draw do
   #resources
   resources :users
   resources :catalogs do
-    resources :dicom_files, only: [:create, :destroy]
+    resources :dicom_files, only: [:create, :show, :destroy] do
+      # TO DO
+      # Change route /catalog_id/dicom_files/:id to /catalog_id/:id
+    end
   end
 
 

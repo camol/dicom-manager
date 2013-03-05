@@ -1,0 +1,24 @@
+.container-fluid
+  %h1= @dicom.name
+  .row-fluid
+    .span4
+      = image_tag('sample-dicom.png')
+    .span8
+      %table.table.table-condensed.table-hover{style: "font-size: 20px;"}
+        %tbody
+          %tr
+            %th Full file name:
+            %td= @dicom.dicom_file_name
+          %tr
+            %th File size:
+            %td= number_to_human_size(@dicom.dicom_file_size)
+          %tr
+            %th File uploaded on:
+            %td= @dicom.dicom_updated_at
+          %tr
+            %th Path to the file:
+            %td= path_to(@dicom.catalog)
+
+      = link_to "Back to parent catalog", @dicom.catalog, class: 'btn btn-mini'
+
+

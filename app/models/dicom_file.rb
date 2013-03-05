@@ -17,5 +17,21 @@ class DicomFile < ActiveRecord::Base
   has_attached_file :dicom
 
   belongs_to :catalog
+
+  include Rails.application.routes.url_helpers
+
+  def name
+    self.dicom_file_name.chomp('.dcm')
+  end
+
+  def to_jq_upload
+    {
+      "name" => read_attribute(:dicom_file_name),
+      "size" => read_attribute(:dicom_file_size),
+    }
+  end
+
+  # To DO
+  # Make a callback which destroys files after delete in DB
 end
 

@@ -1,12 +1,12 @@
 class DicomFilesController < ApplicationController
 
   def create
-    debugger
     @dicom_file = current_catalog.dicom_files.new(params[:dicom_file])
-    if @dicom_file.save
-      redirect_to catalogs_path
-    else
-      redirect_to root_path
-    end
+    @dicom_file.save
+    render json: [@dicom_file].to_json and return
+  end
+
+  def show
+    @dicom = DicomFile.find(params[:id])
   end
 end

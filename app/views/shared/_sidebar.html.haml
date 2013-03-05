@@ -19,7 +19,7 @@
             Edit
         %li.last-item
           = link_to '<i class = "icon-remove"></i> Delete'.html_safe, current_catalog, method: :delete, confirm: "You will lose all data which this catalog contains (folders and files). Are You sure?", class: 'btn btn-danger' 
-        - if !current_catalog.has_files?
+        - if !current_catalog.is_root?
           %li.side-nav-header
             Files
           %li

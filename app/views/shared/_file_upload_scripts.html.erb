@@ -12,7 +12,7 @@
 <!-- The template to display files available for upload -->
 <script id="template-upload" type="text/x-tmpl">
   {% for (var i=0, file; file=o.files[i]; i++) { %}
-  <tr class="template-upload fade">
+  <tr class="template-upload fade" id={%=file.name.slice(0,-4)%}>
     <td class="preview"><span class="fade"></span></td>
     <td class="name"><span>{%=file.name%}</span></td>
     <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
@@ -22,7 +22,7 @@
     <td>
       <div class="progress progress-success progress-striped active"><div class="bar" style="width:0%;"></div></div>
     </td>
-    <td class="start">{% if (!o.options.autoUpload) { %}
+    <td class="start" style="display: none;">{% if (!o.options.autoUpload) { %}
       <button class="btn btn-primary">
         <i class="icon-upload icon-white"></i>
         <span>{%=locale.fileupload.start%}</span>
@@ -31,7 +31,7 @@
     {% } else { %}
     <td colspan="2"></td>
     {% } %}
-    <td class="cancel">{% if (!i) { %}
+    <td class="cancel" style="display: none;">{% if (!i) { %}
       <button class="btn btn-warning">
         <i class="icon-ban-circle icon-white"></i>
         <span>{%=locale.fileupload.cancel%}</span>
@@ -73,22 +73,36 @@
 <script type="text/javascript" charset="utf-8">
   $(function () {
       // Initialize the jQuery File Upload widget:
-      $('#fileupload').fileupload();
-      // 
-      // Load existing files:
-      $.getJSON($('#fileupload').prop('action'), function (files) {
-        var fu = $('#fileupload').data('fileupload'), 
-          template;
-        fu._adjustMaxNumberOfFiles(-files.length);
-        console.log(files);
-        template = fu._renderDownload(files)
-          .appendTo($('#fileupload .files'));
-        // Force reflow:
-        fu._reflow = fu._transition && template.length &&
-          template[0].offsetWidth;
-        template.addClass('in');
-        $('#loading').remove();
+      $('#fileupload').fileupload({
+        fileTypes: /^image\/(gif|jpeg|png)$/
       });
-
+      $('#fileupload').bind('fileuploadadd', function (e, data) {
+        var fileName = data.files[0].name;
+        if (fileName.match(/\.(.+)$/)[1] != "dcm") {
+          $($('.files').find('#' + fileName.slice(0,-4))).remove()
+        }
+      });
+      $('#fileupload').bind('fileuploaddone', function (e, data) {
+        $($('.files').find('#' + data.files[0].name.slice(0,-4))).remove()
+        if ($('.files').children().length == 0) {
+          window.location.reload(true);
+        }
+      });
+      //
+      // Load existing files:
+      //$.getJSON($('#fileupload').prop('action'), function (files) {
+      //var fu = $('#fileupload').data('fileupload'), 
+      //    template;
+      //  fu._adjustMaxNumberOfFiles(-files.length);
+        //console.log(files);
+        //template = fu._renderDownload(files)
+          //.appendTo($('#fileupload .files'));
+        // Force reflow:
+        //fu._reflow = fu._transition && template.length &&
+          //template[0].offsetWidth;
+        //window.location.reload();
+        //template.addClass('in');
+        //$('#loading').remove();
+      //});
   });
 </script>
