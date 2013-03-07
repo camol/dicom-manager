@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
 
   # Relationships
   has_many :catalogs
+  has_and_belongs_to_many :groups
 
   # PreSave actions
   before_save { |user| user.email = email.downcase }

@@ -20,6 +20,8 @@ class DicomFile < ActiveRecord::Base
 
   include Rails.application.routes.url_helpers
 
+  validates_attachment :dicom, presence: true, content_type: { content_type: "application/dicom" }
+
   def name
     self.dicom_file_name.chomp('.dcm')
   end
@@ -30,8 +32,5 @@ class DicomFile < ActiveRecord::Base
       "size" => read_attribute(:dicom_file_size),
     }
   end
-
-  # To DO
-  # Make a callback which destroys files after delete in DB
 end
 
