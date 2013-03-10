@@ -14,4 +14,8 @@ module ApplicationHelper
 		@body_class || ''
 	end
 
+  def current_resource_name
+    params[:controller]
+  end
+
 end
