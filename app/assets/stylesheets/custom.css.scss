@@ -110,6 +110,7 @@ html {
   height: 100%;
   background: {
     image: url("main.jpg");
+    size: 100%;
   }
 }
 
@@ -185,6 +186,9 @@ p {
   position: fixed;
   bottom: 0;
   width: 100%;
+  .navbar {
+    margin-bottom: 0px;
+  }
 }
 
 .desktop {
@@ -273,7 +277,7 @@ p {
 
   i {
     vertical-align: middle;
-    height: 19px;
+    height: 15px;
   }
 
   .btn {
@@ -296,4 +300,10 @@ p {
   left: 35%;
   max-height: auto;
 
+}
+
+.navbar {
+  .dropdown-menu {
+    margin-top: -4px;
+  }
 }

@@ -5,6 +5,7 @@ DicomManager::Application.routes.draw do
   namespace :admin do
     resources :users, constraints: { id: /[^\/]+/ }
     resources :groups
+    resources :projects
   end
 
   #resources

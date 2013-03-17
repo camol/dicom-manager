@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
- # before_filter :correct_user , only: [:show, :edit, :update]
+ before_filter :correct_user , only: [:show, :edit, :update]
 
-  def show 
+  def show
     @user = User.find(params[:id])
   end
 
@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   end
 
   private
-    
   def correct_user
     @user = User.find(params[:id])
     if current_user.admin?

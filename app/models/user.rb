@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :login, :surname, :name, :user_login, :current_pass, :admin, :enabled
+                  :login, :surname, :name, :user_login, :current_password, :admin, :enabled, :group_ids
 
 
   # Relationships
@@ -51,8 +51,8 @@ class User < ActiveRecord::Base
   validates :login, presence: true, length: { maximum: 20 }, uniqueness: { case_sensitive: false }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false}
-  validates :password, length: { minimum: 8 }
-  validates :password_confirmation, presence: true
+  validates :password, length: { minimum: 8 }, on: :create
+  validates :password_confirmation, presence: true, on: :create
 
   public
 

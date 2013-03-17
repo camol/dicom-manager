@@ -10,7 +10,7 @@
  *
  *= require_self
  *= require jquery.fileupload-ui
- *= require 'font-awesome'
+ *= require font-awesome
  *= require jquery.ui.all
  *= require_tree
 */
