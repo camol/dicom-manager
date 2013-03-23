@@ -37,8 +37,18 @@
         %td= @user.updated_at
       %tr
         %th Assigned to groups:
-        - @user.groups.each do |g|
-          %td= g.name
+        - if @user.groups.any?
+          - @user.groups.each do |g|
+            %td= link_to g.name, admin_group_path(g)
+        - else
+          %td No groups
+      %tr
+        %th Assigned to projects:
+        - if @user.projects.any?
+          - @user.projects.each do |p|
+            %td= link_to p.name, admin_project_path(p)
+        - else
+          %td No projects
 
 .form_actions
   = link_to "Edit user", edit_admin_user_path(@user), class: 'btn'

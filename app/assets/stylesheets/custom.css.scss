@@ -307,3 +307,10 @@ p {
     margin-top: -4px;
   }
 }
+[class^="icon-"], [class*=" icon-"]{
+    background:none!important;
+}
+
+.btn [class^="icon-"], .btn [class*=" icon-"] {
+    line-height: 1px;
+}
