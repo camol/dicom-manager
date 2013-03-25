@@ -5,7 +5,6 @@
         = f.input :name
         = f.input :description
         = f.button :submit, :class => 'btn-primary'
-        = link_to "Cancel", admin_projects_path, :class => 'btn'
       .span6
         = f.association :groups, as: :check_boxes, label: "Assigned groups:", wrapper_html: { class: 'my-checkboxes' }
 

@@ -1,21 +1,19 @@
 - provide(:title, 'Sign in')
-.pagination-centered
-  %h1 Sign in
-  .session
-    = form_for(resource, :as => :user, :url => session_path(:user)) do |f|
-      %div
-        = f.label :user_login
-        %br/
-        = f.text_field :user_login
-      %div
-        = f.label :password
-        %br/
-        = f.password_field :password
-      - if devise_mapping.rememberable?
-        .checkbox_label
-          = f.check_box :remember_me
-          = f.label :remember_me
-      %div#sign_in_btn
-        = f.submit "Sign in"
-      %div
-        = render "devise/shared/links"
+%h1 Sign in
+.row-fluid.pagination-centered
+  = form_for(resource, :as => :user, :url => session_path(:user)) do |f|
+    %div
+      = f.label :user_login
+      %br/
+      = f.text_field :user_login
+    %div
+      = f.label :password
+      %br/
+      = f.password_field :password
+    - if devise_mapping.rememberable?
+      .checkbox{ style: "padding-left: 425px;" }
+        = f.check_box :remember_me
+        = f.label :remember_me, style: "width: 100px;"
+    = f.submit "Sign in", class: "btn btn-primary"
+    %div
+      = render "devise/shared/links"

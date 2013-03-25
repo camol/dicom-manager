@@ -9,7 +9,6 @@
         = f.input :admin, wrapper_html: { class: 'checkbox' }
         = f.input :enabled, wrapper_html: { class: 'checkbox' }
         = f.button :submit, :class => 'btn-primary'
-        = link_to "Cancel", admin_users_path, :class => 'btn'
       .span6
         = f.association :groups, as: :check_boxes, label: "Assigned to groups:", wrapper_html: { class: 'my-checkboxes' }
 
