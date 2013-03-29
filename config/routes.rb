@@ -9,6 +9,7 @@ DicomManager::Application.routes.draw do
   end
 
   #resources
+  resources :groups
   resources :users
   resources :catalogs do
     resources :dicom_files, only: [:create, :show, :destroy] do

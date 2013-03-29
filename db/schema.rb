@@ -11,20 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317132727) do
+ActiveRecord::Schema.define(:version => 20130329110336) do
 
   create_table "catalogs", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "user_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "ancestry"
-    t.boolean  "has_files",   :default => false
+    t.boolean  "has_files",        :default => false
+    t.integer  "catalogable_id"
+    t.string   "catalogable_type"
+    t.integer  "created_by"
   end
 
   add_index "catalogs", ["ancestry"], :name => "index_catalogs_on_ancestry"
-  add_index "catalogs", ["user_id"], :name => "index_catalogs_on_user_id"
 
   create_table "dicom_files", :force => true do |t|
     t.string   "dicom_file_name"

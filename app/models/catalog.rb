@@ -20,14 +20,13 @@ class Catalog < ActiveRecord::Base
 
   # Relationships
   has_many :dicom_files, dependent: :destroy
-  belongs_to :user
+  belongs_to :author, class_name: 'User', foreign_key: 'created_by', validate: true
+  belongs_to :catalogable, polymorphic: true
 
   #validations
   validates :name, presence: true, length: { maximum: 20 }, uniqueness: { case_sensitive: false }
 
-  
   public
-
   def root?
     self.ancestry.nil?
   end

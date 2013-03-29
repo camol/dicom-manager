@@ -1,31 +1,23 @@
-.sidebar
-  .sidebar-title.hide
-    Actions
-  .side-off#arrow
-    %a.side-link{:href => "#"}
-      %i.icon-chevron-right
-  .well.sidebar-nav#sidebar-menu
-    %ul.nav-list.side-nav-list
-      %li.side-nav-header
-        Catalog
-      %li
-        %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.new_cat_form', placement: 'right', 'original-title' => "New" } }
-          %i.icon-folder-close
-          New
-      - if current_catalog.present?
-        %li
-          %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.edit_cat_form', placement: 'right', 'original-title' => "Edit" } }
-            %i.icon-edit
-            Edit
-        %li.last-item
-          = link_to '<i class = "icon-remove"></i> Delete'.html_safe, current_catalog, method: :delete, confirm: "You will lose all data which this catalog contains (folders and files). Are You sure?", class: 'btn btn-danger' 
-        = render 'shared/modal'
-        %li.side-nav-header
-          Files
-        %li
-          %a.btn.btnModal{ href: "", role: 'button', data: { toggle: 'modal', 'modal_content_selector' => '.file_upload' }, remote: 'true'}
-            %i.icon-file
-            New
+%li.side-nav-header
+  Catalog
+%li
+  %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.new_cat_form', placement: 'right', 'original-title' => "New" } }
+    %i.icon-folder-close
+    New
+- if current_catalog.present?
+  %li
+    %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.edit_cat_form', placement: 'right', 'original-title' => "Edit" } }
+      %i.icon-edit
+      Edit
+  %li.last-item
+    = link_to '<i class = "icon-remove"></i> Delete'.html_safe, current_catalog, method: :delete, confirm: "You will lose all data which this catalog contains (folders and files). Are You sure?", class: 'btn btn-danger' 
+  = render 'shared/modal'
+  %li.side-nav-header
+    Files
+  %li
+    %a.btn.btnModal{ href: "", role: 'button', data: { toggle: 'modal', 'modal_content_selector' => '.file_upload' }, remote: 'true'}
+      %i.icon-file
+      New
 
 = render 'shared/catalog_forms'
 

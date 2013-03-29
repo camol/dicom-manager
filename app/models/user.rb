@@ -39,7 +39,8 @@ class User < ActiveRecord::Base
 
 
   # Relationships
-  has_many :catalogs
+  has_many :created_catalogs, class_name: 'Catalog', foreign_key: 'created_by'
+  has_many :catalogs, as: :catalogable
   has_and_belongs_to_many :groups
   has_many :projects, through: :groups
 
