@@ -13,6 +13,7 @@ gem 'mysql2'
 gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'ransack'
+gem 'userstamp', :git => "git://github.com/delynn/userstamp.git"
 
 group :development do
   gem 'annotate', '~> 2.4.1.beta'

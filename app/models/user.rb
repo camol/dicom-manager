@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :authentication_keys => [:user_login]
 
+  model_stamper
+
   # Virtual attribute for sign with email or login
   attr_accessor :user_login, :password_confirmation, :current_password
 
@@ -39,7 +41,10 @@ class User < ActiveRecord::Base
 
 
   # Relationships
-  has_many :created_catalogs, class_name: 'Catalog', foreign_key: 'created_by'
+  has_many :created_catalogs, class_name: 'Catalog', foreign_key: 'creator_id'
+  has_many :created_groups, class_name: 'Group', foreign_key: 'creator_id'
+  has_many :created_projects, class_name: 'Project', foreign_key: 'creator_id'
+  has_many :created_dicoms, class_name: 'DicomFile', foreign_key: 'creator_id'
   has_many :catalogs, as: :catalogable
   has_and_belongs_to_many :groups
   has_many :projects, through: :groups

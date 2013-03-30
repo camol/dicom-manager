@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130329110336) do
+ActiveRecord::Schema.define(:version => 20130330091848) do
 
   create_table "catalogs", :force => true do |t|
     t.string   "name"
@@ -22,7 +22,8 @@ ActiveRecord::Schema.define(:version => 20130329110336) do
     t.boolean  "has_files",        :default => false
     t.integer  "catalogable_id"
     t.string   "catalogable_type"
-    t.integer  "created_by"
+    t.integer  "creator_id"
+    t.integer  "updater_id"
   end
 
   add_index "catalogs", ["ancestry"], :name => "index_catalogs_on_ancestry"
@@ -35,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20130329110336) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "catalog_id"
+    t.integer  "creator_id"
+    t.integer  "updater_id"
   end
 
   create_table "groups", :force => true do |t|
@@ -42,6 +45,8 @@ ActiveRecord::Schema.define(:version => 20130329110336) do
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "creator_id"
+    t.integer  "updater_id"
   end
 
   create_table "groups_projects", :id => false, :force => true do |t|
@@ -63,6 +68,8 @@ ActiveRecord::Schema.define(:version => 20130329110336) do
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "creator_id"
+    t.integer  "updater_id"
   end
 
   create_table "users", :force => true do |t|

@@ -20,7 +20,7 @@ class Catalog < ActiveRecord::Base
 
   # Relationships
   has_many :dicom_files, dependent: :destroy
-  belongs_to :author, class_name: 'User', foreign_key: 'created_by', validate: true
+  belongs_to :author, class_name: 'User', foreign_key: 'creator_id', validate: true
   belongs_to :catalogable, polymorphic: true
 
   #validations
@@ -31,5 +31,8 @@ class Catalog < ActiveRecord::Base
     self.ancestry.nil?
   end
 
+  def created_by?(user)
+    self.id == user.id
+  end
 end
 

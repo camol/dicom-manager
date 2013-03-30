@@ -17,6 +17,7 @@ class DicomFile < ActiveRecord::Base
   has_attached_file :dicom
 
   belongs_to :catalog
+  belongs_to :author, class_name: 'User', foreign_key: 'creator_id', validate: true
 
   include Rails.application.routes.url_helpers
 
@@ -31,6 +32,10 @@ class DicomFile < ActiveRecord::Base
       "name" => read_attribute(:dicom_file_name),
       "size" => read_attribute(:dicom_file_size),
     }
+  end
+
+  def created_by?(user)
+    self.id == user.id
   end
 end
 

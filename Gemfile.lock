@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/delynn/userstamp.git
+  revision: 777633aa564f8457c999ddb96afa4c5ae18d319f
+  specs:
+    userstamp (2.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -196,4 +202,5 @@ DEPENDENCIES
   simple_form
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
+  userstamp!
   will_paginate (= 3.0.3)
