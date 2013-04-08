@@ -9,7 +9,11 @@
               %b.caret
             %ul.dropdown-menu@menu{:aria => {"labelledby" => "menu"}}
               %li
-                = link_to "Files", catalogs_path
+                = link_to "Projects", projects_path
+              %li
+                = link_to "Groups", groups_path
+              %li
+                = link_to "Catalogs", catalog_path(current_user.root_catalog)
               %li.divider
               %li
                 = link_to "Sign out", destroy_user_session_path, method: "delete"

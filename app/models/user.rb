@@ -48,9 +48,12 @@ class User < ActiveRecord::Base
   has_many :catalogs, as: :catalogable
   has_and_belongs_to_many :groups
   has_many :projects, through: :groups
+  has_one :root_catalog, class_name: "Catalog", as: :catalogable, conditions: { ancestry: nil }
 
   # PreSave actions
   before_save { |user| user.email = email.downcase }
+
+  after_create :create_root_catalog
 
   #validations
   validates :name, presence: true, length: { maximum: 50 }
@@ -77,5 +80,10 @@ class User < ActiveRecord::Base
         where(conditions).first
       end
     end
+
+    def create_root_catalog
+      catalogs.create(name: full_name, description: "Root catalog for user")
+    end
+
 end
 

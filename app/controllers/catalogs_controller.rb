@@ -7,30 +7,29 @@ class CatalogsController < ApplicationController
   end
 
   def index
+    # TO DO
+    # Probably no need for it
     @new_catalog = Catalog.new
     @catalogs = current_user.catalogs.roots
   end
 
   def create
     if params[:catalog][:curr_cat_id].nil?
-      catalog = current_user.catalogs.build(params[:catalog])
+      redirect_to root_path
+      #catalog = current_user.catalogs.build(params[:catalog])
     else
-      catalog = current_user.catalogs.find(params[:catalog][:curr_cat_id]).children.create
-      catalog.user_id = current_user.id
+      catalog = Catalog.find(params[:catalog][:curr_cat_id]).children.create
+      catalog.catalogable = Catalog.find(params[:catalog][:curr_cat_id]).catalogable
       catalog.name = params[:catalog][:name]
       catalog.description = params[:catalog][:description]
     end
 
     if catalog.save
       flash[:success] = "Catalog created"
-      if catalog.is_root?
-        redirect_to catalogs_path
-      else
-        redirect_to catalog.parent 
-      end
+        redirect_to catalog
     else
       flash[:failure] = "Failed to create catalog"
-      redirect_to catalogs_path
+      redirect_to current_catalog
     end
   end
 

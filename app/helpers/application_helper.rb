@@ -15,7 +15,10 @@ module ApplicationHelper
 	end
 
   def current_resource_name
-    params[:controller]
+    params[:controller].split('/').last
   end
 
+  def current_namespace
+    params[:controller].split('/').first
+  end
 end

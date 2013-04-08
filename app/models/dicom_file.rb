@@ -10,6 +10,8 @@
 #  created_at         :datetime        not null
 #  updated_at         :datetime        not null
 #  catalog_id         :integer(4)
+#  creator_id         :integer(4)
+#  updater_id         :integer(4)
 #
 
 class DicomFile < ActiveRecord::Base

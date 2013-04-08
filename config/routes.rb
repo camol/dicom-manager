@@ -4,12 +4,19 @@ DicomManager::Application.routes.draw do
 
   namespace :admin do
     resources :users, constraints: { id: /[^\/]+/ }
+    resources :groups, only: [:index]
+    resources :projects, only: [:index]
+    resources :catalogs, only: [:index]
+  end
+
+  namespace :user do
     resources :groups
     resources :projects
   end
 
   #resources
   resources :groups
+  resources :projects
   resources :users
   resources :catalogs do
     resources :dicom_files, only: [:create, :show, :destroy] do

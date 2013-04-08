@@ -1,0 +1,31 @@
+- provide(:title, 'Project')
+- model_class = Project
+%h1 Project
+
+.row-fluid
+  %table.table.table-condensed
+    %tbody
+      %tr
+        %th= model_class.human_attribute_name(:name) + ':'
+        %td= @project.name
+      %tr
+        %th= model_class.human_attribute_name(:description) + ':'
+        %td= @project.description
+      %tr
+        %th= model_class.human_attribute_name(:created_at) + ':'
+        %td= @project.created_at
+      %tr
+        %th= model_class.human_attribute_name(:updated_at) + ':'
+        %td= @project.updated_at
+      %tr
+        %th Assigned groups:
+        - if @project.groups.any?
+          - @project.groups.each do |g|
+            %td= g.name
+        - else
+          %td No groups
+
+.form_actions
+  = link_to "Edit project", edit_admin_project_path(@project), class: 'btn'
+
+

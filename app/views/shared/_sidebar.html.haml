@@ -1,22 +1,30 @@
-.sidebar
-  .sidebar-title.hide
-    Actions
-  .side-off#arrow
-    %a.side-link{:href => "#"}
-      %i.icon-chevron-right
-  .well.sidebar-nav#sidebar-menu
-    %ul.nav-list.side-nav-list
-      - case current_resource_name
-        - when "catalogs"
-          = render "shared/sidebars/catalog_sidebar"
-        - when "admin/groups"
-          = render "shared/sidebars/group_sidebar"
-        - when "admin/projects"
-          = render "shared/sidebars/project_sidebar"
-      %li.side-nav-header
-        Shortcuts
-      %li
-        %a.btn{ href: groups_path }
-          %i.icon-group
-          Groups
-
+- if user_signed_in?
+  .sidebar
+    .sidebar-title.hide
+      Actions
+    .side-off#arrow
+      %a.side-link{:href => "#"}
+        %i.icon-chevron-right
+    .well.sidebar-nav#sidebar-menu
+      %ul.nav-list.side-nav-list
+        - case current_resource_name
+          - when "catalogs"
+            = render "shared/sidebars/catalog_sidebar"
+          - when "groups"
+            = render "shared/sidebars/group_sidebar"
+          - when "projects"
+            = render "shared/sidebars/project_sidebar"
+        %li.side-nav-header
+          Shortcuts
+        %li
+          %a.btn{ href: user_projects_path }
+            %i.icon-briefcase
+            My Projects
+        %li
+          %a.btn{ href: user_groups_path }
+            %i.icon-group
+            My Groups
+        %li
+          %a.btn{ href: catalog_path(current_user.root_catalog) }
+            %i.icon-folder-open
+            My Catalog

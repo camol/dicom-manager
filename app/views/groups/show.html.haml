@@ -28,7 +28,7 @@
 
     - if @group.created_by? current_user
       .form_actions
-        = link_to "Edit group", edit_admin_group_path(@group), class: 'btn'
+        = link_to "Edit group", edit_group_path(@group), class: 'btn'
 
   .span6
     %div
@@ -36,7 +36,7 @@
     - if @group.users.any?
       %ul
         - @group.users.each do |u|
-          %li= u.full_name
+          %li= "#{u.full_name} (#{"Owner" if @group.created_by? u})"
     - else
       %td No users
 

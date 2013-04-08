@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
 
   before_filter :find_group, except: [:index, :create, :new]
+  before_filter :assign_user, only: [:create, :update]
 
   def index
     @search = current_user.groups.search params[:q]
@@ -18,20 +19,22 @@ class GroupsController < ApplicationController
   end
 
   def create
-    group = Group.new params[:group]
+    group = @assign_current_user ? current_user.groups.build(params[:group]) : Group.new(params[:group])
 
-    if group.save
+    if current_user.save && group.save
       flash[:success] = "Group created"
     else
       flash[:failure] = "Failed to create group"
     end
-    redirect_to admin_groups_path
+    redirect_to group_path(group)
   end
 
   def update
-    if @group.update_attributes params[:group]
+    @assign_current_user ? current_user.groups << @group : current_user.groups.delete(@group)
+
+    if current_user.save && @group.update_attributes(params[:group])
       flash[:notice] = "Group updated"
-      redirect_to admin_group_path(@group)
+      redirect_to group_path(@group)
     else
       flash[:error] = "Error updating group"
       render :edit
@@ -40,6 +43,11 @@ class GroupsController < ApplicationController
 
   def find_group
     @group = Group.find params[:id]
+  end
+
+  def assign_user
+    assign = params[:group].delete(:assign_current_user)
+    @assign_current_user = assign == "1" ? true : false
   end
 end
 
