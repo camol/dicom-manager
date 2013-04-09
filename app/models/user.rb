@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   has_many :created_dicoms, class_name: 'DicomFile', foreign_key: 'creator_id'
   has_many :catalogs, as: :catalogable
   has_and_belongs_to_many :groups
-  has_many :projects, through: :groups
+  has_many :projects, through: :groups, group: :project_id
   has_one :root_catalog, class_name: "Catalog", as: :catalogable, conditions: { ancestry: nil }
 
   # PreSave actions

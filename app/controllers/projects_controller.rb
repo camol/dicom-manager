@@ -2,8 +2,8 @@ class ProjectsController < ApplicationController
   before_filter :find_project, except: [:index, :create, :new]
 
   def index
-    @search = Project.search params[:q]
-    @projects = current_user.projects
+    @search = current_user.projects.search params[:q]
+    @projects = @search.result.page params[:page]
   end
 
   def show
@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
   def update
     if @project.update_attributes params[:project]
       flash[:success] = "Project updated"
-      redirect_to admin_project_path(@project)
+      redirect_to project_path(@project)
     else
       flash[:error] = "Error updating project"
       render :edit

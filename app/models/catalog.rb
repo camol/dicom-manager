@@ -29,7 +29,11 @@ class Catalog < ActiveRecord::Base
   #validations
   validates :name, presence: true, length: { maximum: 20 }, uniqueness: { case_sensitive: false }
 
-  public
+  def kids
+    assigned_children = self.root? ? catalogable.groups.map{|g| g.root_catalog } : []
+    self.children + assigned_children
+  end
+
   def root?
     self.ancestry.nil?
   end

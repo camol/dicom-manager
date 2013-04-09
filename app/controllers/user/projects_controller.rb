@@ -1,7 +1,7 @@
 class User::ProjectsController < ApplicationController
   def index
-    @search = Project.search params[:q]
-    @projects = current_user.created_projects
+    @search = current_user.created_projects.search params[:q]
+    @projects = @search.result.page params[:page]
   end
 end
 

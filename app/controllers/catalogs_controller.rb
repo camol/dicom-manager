@@ -2,7 +2,7 @@ class CatalogsController < ApplicationController
 
   def show
     @new_catalog = Catalog.new
-    @catalogs = current_catalog.children
+    @catalogs = current_catalog.kids
     @dicoms = current_catalog.dicom_files
   end
 
