@@ -17,7 +17,12 @@ DicomManager::Application.routes.draw do
   #resources
   resources :groups
   resources :projects
-  resources :users
+  resources :users do
+    member do
+      get 'edit_share'
+      post 'update_share'
+    end
+  end
   resources :catalogs do
     resources :dicom_files, only: [:create, :show, :destroy] do
       # TO DO

@@ -12,11 +12,16 @@
 #
 
 class Group < ActiveRecord::Base
-  has_and_belongs_to_many :users
-  has_and_belongs_to_many :projects
+  attr_accessible :groups_projects_attributes
+  has_many :groups_users, dependent: :destroy
+  has_many :users, through: :groups_users
+  has_many :groups_projects, dependent: :destroy
+  has_many :projects, through: :groups_projects
   has_many :catalogs, as: :catalogable
   has_one :root_catalog, class_name: "Catalog", as: :catalogable, conditions: { ancestry: nil }
   belongs_to :author, class_name: 'User', foreign_key: 'creator_id', validate: true
+
+  accepts_nested_attributes_for :groups_projects
 
   attr_accessible :name, :description
   attr_accessor :assign_current_user
@@ -25,6 +30,10 @@ class Group < ActiveRecord::Base
 
   def created_by?(user)
     self.creator_id == user.id
+  end
+
+  def shares_with_project?(project)
+    groups_projects.where(project_id: project).first.share
   end
 
   def create_root_catalog

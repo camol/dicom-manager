@@ -30,7 +30,15 @@ class Catalog < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 20 }, uniqueness: { case_sensitive: false }
 
   def kids
-    assigned_children = self.root? ? catalogable.groups.map{|g| g.root_catalog } : []
+    assigned_children = []
+    if self.root?
+      case self.catalogable_type
+      when "Project"
+        assigned_children = catalogable.groups.map{|g| g.root_catalog if g.shares_with_project?(catalogable) }.compact
+      when "Group"
+        assigned_children = catalogable.users.map{|u| u.root_catalog if u.shares_with_group?(catalogable) }.compact
+      end
+    end
     self.children + assigned_children
   end
 

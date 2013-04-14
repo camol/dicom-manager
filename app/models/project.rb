@@ -12,7 +12,8 @@
 #
 
 class Project < ActiveRecord::Base
-  has_and_belongs_to_many :groups
+  has_many :groups_projects, dependent: :destroy
+  has_many :groups, through: :groups_projects
   has_many :catalogs, as: :catalogable
   belongs_to :author, class_name: 'User', foreign_key: 'creator_id', validate: true
   has_one :root_catalog, class_name: "Catalog", as: :catalogable, conditions: { ancestry: nil }

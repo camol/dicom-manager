@@ -21,8 +21,11 @@
         %tr
           %th Assigned to projects:
           - if @group.projects.any?
-            - @group.projects.each do |p|
-              %td= link_to p.name, admin_project_path(p)
+            %td
+              - @group.projects.each do |p|
+                - if @group.shares_with_project?(p)
+                  %i.icon-share
+                = link_to p.name, project_path(p)
           - else
             %td No projects
 

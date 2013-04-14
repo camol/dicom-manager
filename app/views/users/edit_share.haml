@@ -1,0 +1,7 @@
+.container-fluid
+  = simple_form_for @user, url: update_share_user_path(@user), method: :post, :html => { class: 'form-horizontal' } do |f|
+    .row-fluid
+      Share your catalogs with groups:
+      = f.simple_fields_for :groups_users do |gu|
+        = gu.input :share, label: gu.object.group.name, as: :boolean, wrapper_html: { class: 'checkbox' }
+      = f.button :submit, :class => 'btn-primary'

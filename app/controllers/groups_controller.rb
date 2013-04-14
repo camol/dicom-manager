@@ -30,7 +30,7 @@ class GroupsController < ApplicationController
   end
 
   def update
-    @assign_current_user ? current_user.groups << @group : current_user.groups.delete(@group)
+    @assign_current_user ? (current_user.groups << @group unless current_user.groups.include?(@group)) : current_user.groups.delete(@group)
 
     if current_user.save && @group.update_attributes(params[:group])
       flash[:notice] = "Group updated"

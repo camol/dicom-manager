@@ -37,8 +37,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :login, :surname, :name, :user_login, :current_password, :admin, :enabled, :group_ids
-
+                  :login, :surname, :name, :user_login, :current_password, :admin, :enabled, :group_ids, :groups_users_attributes
 
   # Relationships
   has_many :created_catalogs, class_name: 'Catalog', foreign_key: 'creator_id'
@@ -46,9 +45,12 @@ class User < ActiveRecord::Base
   has_many :created_projects, class_name: 'Project', foreign_key: 'creator_id'
   has_many :created_dicoms, class_name: 'DicomFile', foreign_key: 'creator_id'
   has_many :catalogs, as: :catalogable
-  has_and_belongs_to_many :groups
+  has_many :groups_users, dependent: :destroy
+  has_many :groups, through: :groups_users
   has_many :projects, through: :groups, group: :project_id
   has_one :root_catalog, class_name: "Catalog", as: :catalogable, conditions: { ancestry: nil }
+
+  accepts_nested_attributes_for :groups_users
 
   # PreSave actions
   before_save { |user| user.email = email.downcase }
@@ -68,6 +70,10 @@ class User < ActiveRecord::Base
 
   def full_name
     self.name + " " + self.surname
+  end
+
+  def shares_with_group?(group)
+    groups_users.where(group_id: group).first.share
   end
 
   private

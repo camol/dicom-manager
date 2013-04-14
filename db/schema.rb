@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130330091848) do
+ActiveRecord::Schema.define(:version => 20130414193201) do
 
   create_table "catalogs", :force => true do |t|
     t.string   "name"
@@ -49,18 +49,20 @@ ActiveRecord::Schema.define(:version => 20130330091848) do
     t.integer  "updater_id"
   end
 
-  create_table "groups_projects", :id => false, :force => true do |t|
+  create_table "groups_projects", :force => true do |t|
     t.integer  "group_id"
     t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "share",      :default => false
   end
 
-  create_table "groups_users", :id => false, :force => true do |t|
+  create_table "groups_users", :force => true do |t|
     t.integer  "group_id"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "share",      :default => false
   end
 
   create_table "projects", :force => true do |t|

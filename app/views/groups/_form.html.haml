@@ -1,8 +1,14 @@
-= simple_form_for @group, :html => { :class => 'form-horizontal' } do |f|
-  = f.input :name
-  = f.input :description
-  - if @group.new_record? || @group.created_by?(current_user)
-    = f.input :assign_current_user, as: :boolean, label: "Assign me to this group", input_html: { checked: (@group.new_record? || current_user.groups.include?(@group)) }, wrapper_html: { class: 'checkbox' }
-  = f.button :submit, :class => 'btn-primary'
-
-
+.container-fluid
+  = simple_form_for @group, :html => { :class => 'form-horizontal' } do |f|
+    .row-fluid
+      .span6
+        = f.input :name
+        = f.input :description
+        - if @group.new_record? || @group.created_by?(current_user)
+          = f.input :assign_current_user, as: :boolean, label: "Assign me to this group", input_html: { checked: (@group.new_record? || current_user.groups.include?(@group)) }, wrapper_html: { class: 'checkbox' }
+        = f.button :submit, :class => 'btn-primary'
+      .span6
+        - if @group.projects.any?
+          Share catalogs with projects:
+          = f.simple_fields_for :groups_projects do |gp|
+            = gp.input :share, label: gp.object.project.name, as: :boolean, wrapper_html: { class: 'checkbox' }
