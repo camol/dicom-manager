@@ -13,6 +13,9 @@
           %th= model_class.human_attribute_name(:description) + ':'
           %td= @group.description
         %tr
+          %th= model_class.human_attribute_name(:catalog_creation) + ':'
+          %td= @group.catalog_creation
+        %tr
           %th= model_class.human_attribute_name(:created_at) + ':'
           %td= @group.created_at
         %tr
@@ -29,19 +32,20 @@
           - else
             %td No projects
 
-    - if @group.created_by? current_user
+    - if can_manage?(@group)
       .form_actions
         = link_to "Edit group", edit_group_path(@group), class: 'btn'
 
   .span6
-    %div
-      Users:
-    - if @group.users.any?
-      %ul
-        - @group.users.each do |u|
-          %li= "#{u.full_name} (#{"Owner" if @group.created_by? u})"
-    - else
-      %td No users
-
-
+    - if can_manage?(@group)
+      %div
+        Users:
+      - if @group.users.any?
+        %ul
+          - @group.users.each do |u|
+            %li
+              = "#{u.full_name} #{"(Owner)" if @group.created_by? u}"
+              = render partial: 'shared/permission_form', locals: { resource: @group, user: u }
+      - else
+        %td No users
 

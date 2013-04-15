@@ -1,0 +1,9 @@
+- if user.has_permission?('create', resource)
+  = link_to "Forbid", permission_path(Permission.find_by_user_and_resource(user, resource)), :method => :delete, :class => 'btn btn-mini btn-danger'
+- else
+  = simple_form_for Permission.new, html: { style: "display: inline;" } do |f|
+    = f.hidden_field :permissionable_type, value: resource.class.to_s
+    = f.hidden_field :permissionable_id, value: resource.id
+    = f.hidden_field :action, value: 'create'
+    = f.hidden_field :user_id, value: user.id
+    = f.button :submit, "Permit", class: 'btn btn-mini'

@@ -40,16 +40,16 @@
         %td
           - if @user.groups.any?
             - @user.groups.each do |g|
-              = link_to g.name, admin_group_path(g)
+              = link_to g.name, group_path(g)
               ,
           - else
             No groups
       %tr
         %th Assigned to projects:
         %td
-          - if @user.projects.any?
+          - if @user.projects.to_a.any?
             - @user.projects.each do |p|
-              = link_to p.name, admin_project_path(p)
+              = link_to p.name, project_path(p)
               ,
           - else
             No projects

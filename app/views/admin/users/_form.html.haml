@@ -8,6 +8,7 @@
         = f.input :email
         = f.input :admin, wrapper_html: { class: 'checkbox' }
         = f.input :enabled, wrapper_html: { class: 'checkbox' }
+        = f.input :roles, as: :check_boxes, collection: User::ROLES.collect{ |r| [r.humanize.titleize, r] }, checked: @user.roles, wrapper_html: { class: 'my-checkboxes' }
         = f.button :submit, :class => 'btn-primary'
       .span6
         = f.association :groups, as: :check_boxes, label: "Assigned to groups:", wrapper_html: { class: 'my-checkboxes' }

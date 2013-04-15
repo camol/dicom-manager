@@ -43,6 +43,7 @@ GEM
     bootstrap-will_paginate (0.0.6)
       will_paginate
     builder (3.0.0)
+    cancan (1.6.9)
     cocaine (0.2.1)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -64,6 +65,7 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
+    easy_roles (1.2.0)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -181,9 +183,11 @@ DEPENDENCIES
   annotate (~> 2.4.1.beta)
   bootstrap-sass
   bootstrap-will_paginate (= 0.0.6)
+  cancan
   coffee-rails (~> 3.2.1)
   debugger
   devise
+  easy_roles
   font-awesome-rails
   haml-rails
   hpricot

@@ -15,6 +15,7 @@ DicomManager::Application.routes.draw do
   end
 
   #resources
+  resources :permissions
   resources :groups
   resources :projects
   resources :users do

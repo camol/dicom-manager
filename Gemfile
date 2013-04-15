@@ -14,6 +14,8 @@ gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'ransack'
 gem 'userstamp', :git => "git://github.com/delynn/userstamp.git"
+gem 'cancan'
+gem 'easy_roles'
 
 group :development do
   gem 'annotate', '~> 2.4.1.beta'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130414193201) do
+ActiveRecord::Schema.define(:version => 20130415131506) do
 
   create_table "catalogs", :force => true do |t|
     t.string   "name"
@@ -43,10 +43,11 @@ ActiveRecord::Schema.define(:version => 20130414193201) do
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.boolean  "catalog_creation", :default => false
   end
 
   create_table "groups_projects", :force => true do |t|
@@ -65,13 +66,23 @@ ActiveRecord::Schema.define(:version => 20130414193201) do
     t.boolean  "share",      :default => false
   end
 
+  create_table "permissions", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "action"
+    t.string   "permissionable_type"
+    t.integer  "permissionable_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.boolean  "catalog_creation", :default => false
   end
 
   create_table "users", :force => true do |t|
@@ -80,8 +91,8 @@ ActiveRecord::Schema.define(:version => 20130414193201) do
     t.string   "surname"
     t.boolean  "admin",                  :default => false
     t.boolean  "enabled"
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.string   "email",                  :default => "",       :null => false
+    t.string   "encrypted_password",     :default => "",       :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -92,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20130414193201) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "roles",                  :default => "--- []"
   end
 
 end

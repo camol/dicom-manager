@@ -2,7 +2,7 @@ module CatalogsHelper
   def current_catalog
     if params.has_key?(:id)
       @current_catalog ||= Catalog.find(params[:id])
-    elsif !params[:catalog].nil? and params[:catalog][:curr_cat_id].nil?
+    elsif !params[:catalog].nil? and !params[:catalog][:curr_cat_id].nil?
       @current_catalog ||= Catalog.find(params[:catalog][:curr_cat_id])
     elsif params.has_key?(:catalog_id)
       @current_catalog ||= Catalog.find(params[:catalog_id])

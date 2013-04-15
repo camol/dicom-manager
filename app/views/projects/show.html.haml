@@ -12,6 +12,9 @@
         %th= model_class.human_attribute_name(:description) + ':'
         %td= @project.description
       %tr
+        %th= model_class.human_attribute_name(:catalog_creation) + ':'
+        %td= @project.catalog_creation
+      %tr
         %th= model_class.human_attribute_name(:created_at) + ':'
         %td= @project.created_at
       %tr
@@ -19,13 +22,15 @@
         %td= @project.updated_at
       %tr
         %th Assigned groups:
-        - if @project.groups.any?
-          - @project.groups.each do |g|
-            %td= g.name
-        - else
-          %td No groups
+        %td
+          - if @project.groups.any?
+            - @project.groups.each do |g|
+              = g.name
+          - else
+            No groups
 
-.form_actions
-  = link_to "Edit project", edit_project_path(@project), class: 'btn'
+- if can_manage?(@project)
+  .form_actions
+    = link_to "Edit project", edit_project_path(@project), class: 'btn'
 
 

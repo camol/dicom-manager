@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_filter :find_user, except: [:index]
+  before_filter :prepare_roles, only: [:create, :update]
 
   def index
     @search = User.search params[:q]
@@ -25,5 +26,9 @@ class Admin::UsersController < ApplicationController
   private
   def find_user
     @user = User.find params[:id]
+  end
+
+  def prepare_roles
+    params[:user][:roles] -= [""]
   end
 end

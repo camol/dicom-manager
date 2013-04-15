@@ -4,6 +4,7 @@
       .span6
         = f.input :name
         = f.input :description
+        = f.input :catalog_creation, wrapper_html: { class: 'checkbox' }
         - if @group.new_record? || @group.created_by?(current_user)
           = f.input :assign_current_user, as: :boolean, label: "Assign me to this group", input_html: { checked: (@group.new_record? || current_user.groups.include?(@group)) }, wrapper_html: { class: 'checkbox' }
         = f.button :submit, :class => 'btn-primary'

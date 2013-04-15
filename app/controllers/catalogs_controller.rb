@@ -1,5 +1,7 @@
 class CatalogsController < ApplicationController
 
+  before_filter :check_permission, only: [:create]
+
   def show
     @new_catalog = Catalog.new
     @catalogs = current_catalog.kids

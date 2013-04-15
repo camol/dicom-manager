@@ -4,6 +4,7 @@
       .span6
         = f.input :name
         = f.input :description
+        = f.input :catalog_creation, wrapper_html: { class: 'checkbox' }
         = f.button :submit, :class => 'btn-primary'
       .span6
         = f.association :groups, as: :check_boxes, label: "Assigned groups:", wrapper_html: { class: 'my-checkboxes' }
