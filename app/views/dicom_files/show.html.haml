@@ -4,7 +4,7 @@
     .span4
       = image_tag('sample-dicom.png')
     .span8
-      %table.table.table-condensed.table-hover{style: "font-size: 20px;"}
+      %table.table{style: "font-size: 20px;"}
         %tbody
           %tr
             %th Full file name:
@@ -24,13 +24,14 @@
   .row-fluid
     %h1 Tags
   .row-fluid
-    %table.table.table-condensed.table-hover{ style: "min-width: 1000px;" }
+    %table.table{ style: "min-width: 1000px;" }
       %tbody
         - @dicom.tags.each do |tag|
           %tr
             %th= tag[0]
             - if tag[1].respond_to?('keys')
-              %td.items-dropdown ITEMS
+              %td
+                .items-dropdown.btn ITEMS
               = render partial: 'items', locals: { items: tag[1] }
             - else
               %td= tag[1]

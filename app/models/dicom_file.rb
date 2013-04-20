@@ -23,6 +23,8 @@ class DicomFile < ActiveRecord::Base
   belongs_to :catalog
   belongs_to :author, class_name: 'User', foreign_key: 'creator_id', validate: true
 
+  after_create :anonymize
+
   include Rails.application.routes.url_helpers
 
   validates_attachment :dicom, presence: true, content_type: { content_type: "application/dicom" }
@@ -44,6 +46,14 @@ class DicomFile < ActiveRecord::Base
 
   def tags
     DObject.read(self.dicom.path).to_hash
+  end
+
+  def anonymize
+    DICOM::Anonymizer.new.anonymize(self.dicom.path)
+  end
+
+  def anonymize_image
+
   end
 end
 

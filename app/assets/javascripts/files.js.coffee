@@ -1,4 +1,4 @@
 $ ->
   $(".items-dropdown").click ->
-    $(this).parent().next().toggle()
+    $(this).parent().parent().next().toggle()
     false
