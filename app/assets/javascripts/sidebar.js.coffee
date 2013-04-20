@@ -27,7 +27,7 @@ $ ->
           e.stopPropagation()
 
           $btn = $(e.target)
-          
+
           if $('.switched-on').exists()
             $('.switched-on').each (index, element) ->
               if !$btn.is($(element))
@@ -38,11 +38,11 @@ $ ->
           $btn.popover('toggle')
           $btn.toggleClass "switched-on"
           $btn.toggleClass "active"
-          
+
           true
 
   if $('.btnModal').exists()
-    $('.btnModal').bind 'click', -> 
+    $('.btnModal').bind 'click', ->
       $modal = $('#myModal')
       fadeTime = 1000
       modalCustomClass = $(this).data('modal_content_selector').substring(1)
@@ -52,9 +52,9 @@ $ ->
         top: 'toggle'
         opacity: 'toggle'
       , fadeTime
-      
-      
-      ###  
+
+
+      ###
       $('html').bind 'click', (e) ->
       alert $(e.target).is('.modal-backdrop')
 
@@ -66,4 +66,4 @@ $ ->
             top: 'toggle'
             opacity: 'toggle'
           , fadeTime
-          ### 
+          ###

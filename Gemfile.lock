@@ -65,6 +65,7 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
+    dicom (0.9.5)
     easy_roles (1.2.0)
     erubis (2.7.0)
     execjs (1.4.0)
@@ -187,6 +188,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debugger
   devise
+  dicom
   easy_roles
   font-awesome-rails
   haml-rails

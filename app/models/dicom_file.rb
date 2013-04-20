@@ -13,10 +13,12 @@
 #  creator_id         :integer(4)
 #  updater_id         :integer(4)
 #
+require 'dicom'
 
 class DicomFile < ActiveRecord::Base
   attr_accessible :dicom
   has_attached_file :dicom
+  include DICOM
 
   belongs_to :catalog
   belongs_to :author, class_name: 'User', foreign_key: 'creator_id', validate: true
@@ -37,7 +39,11 @@ class DicomFile < ActiveRecord::Base
   end
 
   def created_by?(user)
-    self.id == user.id
+    self.creator_id == user.id
+  end
+
+  def tags
+    DObject.read(self.dicom.path).to_hash
   end
 end
 

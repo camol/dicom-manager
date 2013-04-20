@@ -1,0 +1,12 @@
+%tr.tag-items{ style: "display: none;" }
+  %td
+    %table
+      %tbody
+        - items.each do |item|
+          - item.each do |i|
+            - if i.respond_to?('keys')
+              - i.each do |j|
+                %tr
+                  %th= j[0]
+                  %td= j[1]
+

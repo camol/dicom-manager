@@ -73,6 +73,10 @@ class User < ActiveRecord::Base
 
   public
 
+  def list_roles
+    self.roles.join(" ").humanize.titleize
+  end
+
   def full_name
     self.name + " " + self.surname
   end

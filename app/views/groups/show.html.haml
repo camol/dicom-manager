@@ -45,7 +45,8 @@
           - @group.users.each do |u|
             %li
               = "#{u.full_name} #{"(Owner)" if @group.created_by? u}"
-              = render partial: 'shared/permission_form', locals: { resource: @group, user: u }
+              - unless @group.created_by? u
+                = render partial: 'shared/permission_form', locals: { resource: @group, user: u }
       - else
         %td No users
 

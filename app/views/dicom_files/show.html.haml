@@ -21,4 +21,18 @@
 
       = link_to "Back to parent catalog", @dicom.catalog, class: 'btn btn-mini'
 
+  .row-fluid
+    %h1 Tags
+  .row-fluid
+    %table.table.table-condensed.table-hover{ style: "min-width: 1000px;" }
+      %tbody
+        - @dicom.tags.each do |tag|
+          %tr
+            %th= tag[0]
+            - if tag[1].respond_to?('keys')
+              %td.items-dropdown ITEMS
+              = render partial: 'items', locals: { items: tag[1] }
+            - else
+              %td= tag[1]
+
 

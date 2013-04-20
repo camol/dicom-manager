@@ -18,6 +18,9 @@
         %th= model_class.human_attribute_name(:admin) + ':'
         %td= @user.admin
       %tr
+        %th= model_class.human_attribute_name(:roles) + ':'
+        %td= @user.list_roles
+      %tr
         %th= model_class.human_attribute_name(:enabled) + ':'
         %td= @user.enabled
       %tr
