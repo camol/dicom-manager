@@ -23,7 +23,7 @@ class DicomFile < ActiveRecord::Base
   belongs_to :catalog
   belongs_to :author, class_name: 'User', foreign_key: 'creator_id', validate: true
 
-  after_create :anonymize
+  after_commit :anonymize
 
   include Rails.application.routes.url_helpers
 
@@ -49,7 +49,7 @@ class DicomFile < ActiveRecord::Base
   end
 
   def anonymize
-    DICOM::Anonymizer.new.anonymize(self.dicom.path)
+    Anonymizer.new.anonymize(self.dicom.path)
   end
 
   def anonymize_image
