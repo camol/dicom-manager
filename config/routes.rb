@@ -25,6 +25,7 @@ DicomManager::Application.routes.draw do
     end
   end
   resources :catalogs do
+    post 'move', on: :member
     resources :dicom_files
   end
 

@@ -7,7 +7,7 @@
           - if !current_catalog.is_root?
             - current_catalog.ancestors.all.each do |cat|
               %li
-                = link_to cat.is_root? ? "root" : cat.name, cat
+                = link_to cat.is_root? ? "root (#{cat.catalogable.name})" : cat.name, cat
                 %span.divider /
           %li.active
-            = current_catalog.is_root? ? "root" : current_catalog.name
+            = current_catalog.is_root? ? "root (#{current_catalog.catalogable.name})" : current_catalog.name

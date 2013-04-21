@@ -42,12 +42,25 @@ class Catalog < ActiveRecord::Base
     self.children + assigned_children
   end
 
+  def grandparent
+    self.parent.nil? ? nil : self.parent.parent
+  end
+
   def root?
     self.ancestry.nil?
   end
 
   def created_by?(user)
     self.id == user.id
+  end
+
+  def move_to(target)
+    unless self.catalogable == target.catalogable
+      self.children.update_all(catalogable: target.catalogable)
+    end
+
+    self.parent = target
+    self.save
   end
 end
 

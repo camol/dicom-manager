@@ -10,3 +10,21 @@ $ ->
 
   $("img[rel=tooltip]").tooltip()
 
+  $(".catalog").draggable(
+    containment: '#dir-cont'
+    opacity: 0.60
+    revert: true
+    revertDuration: 200
+  )
+
+  $(".catalog").droppable(
+    drop: (ev, ui)->
+      $("#catalog_target_catalog").attr('value', $(this).data('catalog-id'))
+      $("#catalog_moved_catalog").attr('value', $(ui.draggable).data('catalog-id'))
+      $('form#move-form').submit()
+  )
+
+  $(".move-up").click(->
+    $('form#move-form').submit()
+  )
+

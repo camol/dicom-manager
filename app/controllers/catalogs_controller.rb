@@ -45,6 +45,19 @@ class CatalogsController < ApplicationController
     redirect_to @catalog
   end
 
+  def move
+    target_catalog = Catalog.find(params[:catalog][:target_catalog])
+    moved_catalog = Catalog.find(params[:catalog][:moved_catalog])
+
+    if moved_catalog.move_to(target_catalog)
+      flash[:success] = "Moved catalog"
+    else
+      flash[:error] = "Error moving catalog"
+    end
+
+    redirect_to current_catalog
+  end
+
   def destroy
     catalog = Catalog.find(params[:id])
     parent_catalog = catalog.parent

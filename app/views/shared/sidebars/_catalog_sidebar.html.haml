@@ -7,6 +7,10 @@
       New
   - if current_catalog.present?
     %li
+      %a.btn.btn-popover.move-up{ :href => "#", "data-parent-id" => (current_catalog.parent.id unless current_catalog.is_root?) }
+        %i.icon-hand-up
+        Move up
+    %li
       %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.edit_cat_form', placement: 'right', 'original-title' => "Edit" } }
         %i.icon-edit
         Edit
@@ -21,4 +25,5 @@
         New
 
   = render 'shared/catalog_forms'
+  = render partial: 'move_form'
 

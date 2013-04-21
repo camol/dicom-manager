@@ -16,7 +16,7 @@ module CatalogsHelper
         path += "/#{cat.name}"
       end
     end
-    path += "/#{catalog.name}"   
+    path += "/#{catalog.name}"
   end
 
   def catalog_form_for(catalog)

@@ -1,0 +1,5 @@
+%div{ style: "display: none;" }
+  = simple_form_for current_catalog, url: move_catalog_path(current_catalog), method: :post, html: { id: 'move-form', style: "display: inline;" } do |f|
+    = f.hidden_field :moved_catalog, value: current_catalog.id
+    = f.hidden_field :target_catalog, value: (current_catalog.grandparent.try(:id) unless current_catalog.is_root?)
+    = f.button :submit, "Move up", class: 'btn btn-mini'
