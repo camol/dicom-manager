@@ -27,6 +27,14 @@ class Project < ActiveRecord::Base
     self.id == user.id
   end
 
+  def root_catalog_id
+    self.root_catalog.id
+  end
+
+  def label
+    "#{name} (#{self.class.to_s})"
+  end
+
 
   private
 

@@ -6,6 +6,7 @@ class CatalogsController < ApplicationController
     @new_catalog = Catalog.new
     @catalogs = current_catalog.kids
     @dicoms = current_catalog.dicom_files
+    @resources = current_user.projects + current_user.groups + [current_user]
   end
 
   def index

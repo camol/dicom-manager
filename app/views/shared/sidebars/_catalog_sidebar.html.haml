@@ -7,13 +7,18 @@
       New
   - if current_catalog.present?
     %li
-      %a.btn.btn-popover.move-up{ :href => "#", "data-parent-id" => (current_catalog.parent.id unless current_catalog.is_root?) }
-        %i.icon-hand-up
-        Move up
-    %li
       %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.edit_cat_form', placement: 'right', 'original-title' => "Edit" } }
         %i.icon-edit
         Edit
+    - unless current_catalog.is_root?
+      %li
+        %a.btn.btn-popover.move-up{ :href => "#", "data-parent-id" => (current_catalog.parent.id unless current_catalog.is_root?) }
+          %i.icon-hand-up
+          Move up
+      %li
+        %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.move_cat_form', placement: 'right', 'original-title' => "Move to resource" } }
+          %i.icon-edit
+          Move to
     %li.last-item
       = link_to '<i class = "icon-remove"></i> Delete'.html_safe, current_catalog, method: :delete, confirm: "You will lose all data which this catalog contains (folders and files). Are You sure?", class: 'btn btn-danger' 
     = render 'shared/modal'

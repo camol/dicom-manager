@@ -2,5 +2,8 @@
   - if current_catalog.present?
     .edit_cat_form
       = render 'catalogs/catalog_form', catalog: current_catalog
+    - if !current_catalog.is_root? && @resources.present?
+      .move_cat_form
+        = render 'catalogs/move_catalog_to_resource_form', catalog: current_catalog
   .new_cat_form
     = render 'catalogs/catalog_form', catalog: @new_catalog

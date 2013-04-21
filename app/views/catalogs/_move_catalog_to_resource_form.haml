@@ -1,0 +1,4 @@
+= simple_form_for catalog, url: move_catalog_path(current_catalog), method: :post do |f|
+  = f.hidden_field :moved_catalog, value: current_catalog.id
+  = f.input :target_catalog, label: "Target", collection: @resources, label_method: :label, value_method: :root_catalog_id, include_blank: false
+  = f.button :submit, "Move", class: "btn btn-primary"

@@ -20,6 +20,7 @@ class Catalog < ActiveRecord::Base
   has_ancestry
 
   attr_accessible :description, :name
+  attr_accessor :target_catalog
 
   # Relationships
   has_many :dicom_files, dependent: :destroy
@@ -56,7 +57,7 @@ class Catalog < ActiveRecord::Base
 
   def move_to(target)
     unless self.catalogable == target.catalogable
-      self.children.update_all(catalogable: target.catalogable)
+      self.children.update_all(catalogable_id: target.catalogable_id, catalogable_type: target.catalogable_type)
     end
 
     self.parent = target

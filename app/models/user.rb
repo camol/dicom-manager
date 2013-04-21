@@ -73,6 +73,14 @@ class User < ActiveRecord::Base
 
   public
 
+  def root_catalog_id
+    self.root_catalog.id
+  end
+
+  def label
+    "#{name} (#{self.class.to_s})"
+  end
+
   def list_roles
     self.roles.join(" ").humanize.titleize
   end

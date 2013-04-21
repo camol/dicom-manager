@@ -32,6 +32,14 @@ class Group < ActiveRecord::Base
     self.creator_id == user.id
   end
 
+  def root_catalog_id
+    self.root_catalog.id
+  end
+
+  def label
+    "#{name} (#{self.class.to_s})"
+  end
+
   def shares_with_project?(project)
     groups_projects.where(project_id: project).first.share
   end
