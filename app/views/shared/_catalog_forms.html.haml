@@ -5,5 +5,8 @@
     - if !current_catalog.is_root? && @resources.present?
       .move_cat_form
         = render 'catalogs/move_catalog_to_resource_form', catalog: current_catalog
+    - if @dicoms.any?
+      .move_files_form
+        = render 'dicom_files/move_form'
   .new_cat_form
     = render 'catalogs/catalog_form', catalog: @new_catalog

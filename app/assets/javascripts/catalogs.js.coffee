@@ -28,7 +28,4 @@ $ ->
     $('form#move-form').submit()
   )
 
-  $(".select-target-resource").change(->
-    alert "changed"
-  )
 

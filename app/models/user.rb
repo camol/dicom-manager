@@ -23,6 +23,8 @@
 #
 
 class User < ActiveRecord::Base
+  include CatalogExtension
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable
   # :lockable, :timeoutable and :omniauthable
@@ -77,9 +79,6 @@ class User < ActiveRecord::Base
     self.root_catalog.id
   end
 
-  def label
-    "#{name} (#{self.class.to_s})"
-  end
 
   def list_roles
     self.roles.join(" ").humanize.titleize
@@ -94,7 +93,8 @@ class User < ActiveRecord::Base
   end
 
   def has_permission?(action, resource)
-    permissions.where(action: action, permissionable_type: resource.class.to_s, permissionable_id: resource.id).limit(1).exists?
+    ids = resource.class.to_s == "Group" ? resource.id : resource.groups.pluck("groups.id")
+    permissions.where(action: action, permissionable_type: 'Group', permissionable_id: ids).limit(1).exists?
   end
 
   private
@@ -109,8 +109,8 @@ class User < ActiveRecord::Base
     end
 
     def create_root_catalog
-      catalogs.create(name: full_name, description: "Root catalog for user", creator_id: self.id, updater_id: self.id)
+      catalog_description = "Root catalog for #{full_name} (#{self.class.to_s})"
+      catalogs.create(name: full_name.downcase, description: catalog_description, creator_id: self.id, updater_id: self.id)
     end
-
 end
 

@@ -10,11 +10,12 @@
       %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.edit_cat_form', placement: 'right', 'original-title' => "Edit" } }
         %i.icon-edit
         Edit
-    - unless current_catalog.is_root?
+    - unless current_catalog.grandparent.nil?
       %li
         %a.btn.btn-popover.move-up{ :href => "#", "data-parent-id" => (current_catalog.parent.id unless current_catalog.is_root?) }
           %i.icon-hand-up
           Move up
+    - unless current_catalog.is_root?
       %li
         %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.move_cat_form', placement: 'right', 'original-title' => "Move to resource" } }
           %i.icon-edit
@@ -28,6 +29,11 @@
       %a.btn.btnModal{ href: "", role: 'button', data: { toggle: 'modal', 'modal_content_selector' => '.file_upload' }, remote: 'true'}
         %i.icon-file
         New
+    - if @dicoms.any?
+      %li
+        %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.move_files_form', placement: 'right', 'original-title' => "Move / Delete" } }
+          %i.icon-edit
+          Move/Delete
 
   = render 'shared/catalog_forms'
   = render partial: 'move_form'

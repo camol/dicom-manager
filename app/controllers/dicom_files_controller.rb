@@ -11,7 +11,10 @@ class DicomFilesController < ApplicationController
   end
 
   def update
+  end
 
+  def move
+    flash[:success] = "Dupa"
   end
 
   def load_dicom

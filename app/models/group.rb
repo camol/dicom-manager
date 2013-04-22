@@ -12,6 +12,8 @@
 #
 
 class Group < ActiveRecord::Base
+  include CatalogExtension
+
   attr_accessible :groups_projects_attributes
   has_many :groups_users, dependent: :destroy
   has_many :users, through: :groups_users
@@ -32,20 +34,13 @@ class Group < ActiveRecord::Base
     self.creator_id == user.id
   end
 
-  def root_catalog_id
-    self.root_catalog.id
-  end
-
-  def label
-    "#{name} (#{self.class.to_s})"
-  end
-
   def shares_with_project?(project)
     groups_projects.where(project_id: project).first.share
   end
 
   def create_root_catalog
-    catalogs.create(name: name, description: "Root catalog for group")
+    catalog_description = "Root catalog for #{name} (#{self.class.to_s})"
+    catalogs.create(name: name.downcase, description: catalog_description)
   end
 end
 

@@ -1,0 +1,4 @@
+= simple_form_for :dicom_files, url: move_catalog_dicom_files_path(@dicoms.first), method: :post do |f|
+  = f.hidden_field :files
+  = f.input :target_catalog, label: "Target", collection: @target_catalogs, label_method: :name, value_method: :id, prompt: "Trash (Delete)"
+  = f.button :submit, "Delete", class: "move-files btn btn-danger"

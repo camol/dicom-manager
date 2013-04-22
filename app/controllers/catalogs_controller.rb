@@ -7,6 +7,7 @@ class CatalogsController < ApplicationController
     @catalogs = current_catalog.kids
     @dicoms = current_catalog.dicom_files
     @resources = current_user.projects + current_user.groups + [current_user]
+    @target_catalogs = current_catalog.children.to_a + current_catalog.parent.to_a
   end
 
   def index

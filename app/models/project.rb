@@ -12,6 +12,8 @@
 #
 
 class Project < ActiveRecord::Base
+  include CatalogExtension
+
   has_many :groups_projects, dependent: :destroy
   has_many :groups, through: :groups_projects
   has_many :catalogs, as: :catalogable
@@ -27,19 +29,9 @@ class Project < ActiveRecord::Base
     self.id == user.id
   end
 
-  def root_catalog_id
-    self.root_catalog.id
-  end
-
-  def label
-    "#{name} (#{self.class.to_s})"
-  end
-
-
-  private
-
   def create_root_catalog
-    catalogs.create(name: name, description: "Root catalog for project")
+    catalog_description = "Root catalog for #{name} (#{self.class.to_s})"
+    catalogs.create(name: name.downcase, description: catalog_description)
   end
 end
 
