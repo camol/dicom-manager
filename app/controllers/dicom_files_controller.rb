@@ -1,5 +1,5 @@
 class DicomFilesController < ApplicationController
-  before_filter :load_dicom, except: [:create]
+  before_filter :load_dicom, except: [:create, :move]
 
   def create
     @dicom_file = current_catalog.dicom_files.new(params[:dicom_file])
@@ -14,7 +14,8 @@ class DicomFilesController < ApplicationController
   end
 
   def move
-    flash[:success] = "Dupa"
+    flash[:success] = params
+    redirect_to current_catalog
   end
 
   def load_dicom
