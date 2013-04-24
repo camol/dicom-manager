@@ -54,16 +54,3 @@ $ ->
       , fadeTime
 
 
-      ###
-      $('html').bind 'click', (e) ->
-      alert $(e.target).is('.modal-backdrop')
-
-      if $modal.hasClass 'modal-on'
-        alert 'modal jest'
-        $('.modal-backdrop').bind 'click', (e)->
-          alert 'tlo'
-          $modal.animate
-            top: 'toggle'
-            opacity: 'toggle'
-          , fadeTime
-          ###

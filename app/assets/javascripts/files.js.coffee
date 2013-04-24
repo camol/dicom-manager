@@ -23,7 +23,7 @@ $ ->
 
     setFilesConfirmation()
 
-  $('.move-files').live 'click', (e) ->
+  $('form#move-files-form').live 'submit', (e) ->
     files_ids = []
     $('.file-checkbox').filter(':checked').each ->
       files_ids.push($(this).val())
@@ -32,10 +32,14 @@ $ ->
       alert 'No files selected'
       return false
     else
-      $('#dicom_files_files').val(files_ids)
+      $('input[id=dicom_files_files]').val(files_ids)
 
   $('.file-checkbox').change ->
     setFilesConfirmation()
+
+  $('a#move-files-btn').bind 'click', (e) ->
+    if !$(this).hasClass('active') && $('.file-checkbox').filter(':checked').length == $('.file-checkbox').length
+      $('input#files-all').attr('checked', 'checked')
 
   setFilesConfirmation = ->
     checked_files = $('.file-checkbox').filter(':checked').length

@@ -31,7 +31,7 @@
         New
     - if @dicoms.any?
       %li
-        %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.move_files_form', placement: 'right', 'original-title' => "Move / Delete" } }
+        %a.btn.btn-popover{ :href => "#", rel: 'popover', id: 'move-files-btn', data: { 'popover_content_selector' => '.move_files_form', placement: 'right', 'original-title' => "Move / Delete" } }
           %i.icon-edit
           Move/Delete
 
