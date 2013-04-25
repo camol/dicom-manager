@@ -15,16 +15,16 @@
           - when "projects"
             = render "shared/sidebars/project_sidebar"
         %li.side-nav-header
-          Shortcuts
+          My
         %li
           %a.btn{ href: user_projects_path }
             %i.icon-briefcase
-            My Projects
+            Projects
         %li
           %a.btn{ href: user_groups_path }
             %i.icon-group
-            My Groups
+            Groups
         %li
           %a.btn{ href: catalog_path(current_user.root_catalog) }
             %i.icon-folder-open
-            My Catalog
+            Catalog

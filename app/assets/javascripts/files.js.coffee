@@ -23,7 +23,7 @@ $ ->
 
     setFilesConfirmation()
 
-  $('form#move-files-form').live 'submit', (e) ->
+  $('form#manage-files-form').live 'submit', (e) ->
     files_ids = []
     $('.file-checkbox').filter(':checked').each ->
       files_ids.push($(this).val())
@@ -33,6 +33,7 @@ $ ->
       return false
     else
       $('input[id=dicom_files_files]').val(files_ids)
+
 
   $('.file-checkbox').change ->
     setFilesConfirmation()

@@ -1,7 +1,8 @@
-= simple_form_for :dicom_files, html: { id: 'move-files-form' }, url: move_catalog_dicom_files_path(current_catalog.id), method: :post do |f|
+= simple_form_for :dicom_files, html: { id: 'manage-files-form' }, url: manage_catalog_dicom_files_path(current_catalog.id), method: :post do |f|
   = f.hidden_field :files
   = f.input :target_catalog, label: "Target", collection: @target_catalogs, label_method: :name, value_method: :id, prompt: "Trash (Delete)"
   .checkbox
     = check_box_tag 'all', 'all', false, id: "files-all"
     = label 'all', "Select all"
   = f.button :submit, "Delete", class: "move-files btn btn-danger", confirm: "Are you sure?"
+  = f.button :submit, "Download", class: "download-files btn btn-success"

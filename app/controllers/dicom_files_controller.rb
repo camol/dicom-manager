@@ -1,5 +1,5 @@
 class DicomFilesController < ApplicationController
-  before_filter :load_dicom, except: [:create, :move]
+  before_filter :load_dicom, except: [:create, :manage]
 
   def create
     @dicom_file = current_catalog.dicom_files.new(params[:dicom_file])
@@ -13,8 +13,34 @@ class DicomFilesController < ApplicationController
   def update
   end
 
-  def move
-    flash[:success] = params
+  def manage
+    files_ids = params[:dicom_files][:files].split(',')
+    target = params[:dicom_files][:target_catalog]
+    dicoms = DicomFile.where(id: files_ids)
+
+    case params[:commit]
+    when "Delete"
+      if dicoms.destroy_all
+        message_type = :success
+        message = "Files deleted"
+      else
+        message_type = :error
+        message = "Error on deleting files"
+      end
+    when "Move"
+      if dicoms.update_all(catalog_id: target)
+        message_type = :success
+        message = "Files moved"
+      else
+        message_type = :error
+        message = "Error on moving files"
+      end
+    when "Download"
+      message_type = :success
+      message = "Files download"
+    end
+
+    flash[message_type] = message
     redirect_to current_catalog
   end
 

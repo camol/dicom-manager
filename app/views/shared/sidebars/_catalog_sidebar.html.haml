@@ -18,22 +18,23 @@
     - unless current_catalog.is_root?
       %li
         %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.move_cat_form', placement: 'right', 'original-title' => "Move to resource" } }
-          %i.icon-edit
+          %i.icon-cut
           Move to
     %li.last-item
-      = link_to '<i class = "icon-remove"></i> Delete'.html_safe, current_catalog, method: :delete, confirm: "You will lose all data which this catalog contains (folders and files). Are You sure?", class: 'btn btn-danger' 
+      = link_to '<i class = "icon-trash"></i> Delete'.html_safe, current_catalog, method: :delete, confirm: "You will lose all data which this catalog contains (folders and files). Are You sure?", class: 'btn btn-danger' 
     = render 'shared/modal'
-    %li.side-nav-header
-      Files
-    %li
-      %a.btn.btnModal{ href: "", role: 'button', data: { toggle: 'modal', 'modal_content_selector' => '.file_upload' }, remote: 'true'}
-        %i.icon-file
-        New
+    - unless current_catalog.is_root?
+      %li.side-nav-header
+        Files
+      %li
+        %a.btn.btnModal{ href: "", role: 'button', data: { toggle: 'modal', 'modal_content_selector' => '.file_upload' }, remote: 'true'}
+          %i.icon-file
+          New
     - if @dicoms.any?
       %li
-        %a.btn.btn-popover{ :href => "#", rel: 'popover', id: 'move-files-btn', data: { 'popover_content_selector' => '.move_files_form', placement: 'right', 'original-title' => "Move / Delete" } }
-          %i.icon-edit
-          Move/Delete
+        %a.btn.btn-popover{ :href => "#", rel: 'popover', id: 'move-files-btn', data: { 'popover_content_selector' => '.move_files_form', placement: 'right', 'original-title' => "Move / Delete / Download" } }
+          %i.icon-magic
+          Manage
 
   = render 'shared/catalog_forms'
   = render partial: 'move_form'
