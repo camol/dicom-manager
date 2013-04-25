@@ -3,7 +3,7 @@
 .row-fluid
   .well.well-small
     = simple_form_for @search, :url => admin_groups_path, :method => :get, :html => { :class => "form-horizontal" } do |f|
-      %legend Search for groups
+      %legend Search for Groups
       = f.input :name_or_description, label: 'Name or description contains:' 
       = f.submit "Search", :class => "btn btn-primary"
   - unless @groups.empty?
