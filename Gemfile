@@ -17,6 +17,7 @@ gem 'userstamp', :git => "git://github.com/delynn/userstamp.git"
 gem 'cancan'
 gem 'easy_roles'
 gem 'dicom'
+gem 'rubyzip'
 
 group :development do
   gem 'annotate', '~> 2.4.1.beta'

@@ -36,12 +36,16 @@ class DicomFilesController < ApplicationController
         message = "Error on moving files"
       end
     when "Download"
-      message_type = :success
-      message = "Files download"
+      unless dicoms.empty?
+        file_name = current_catalog.name.squish.downcase.tr(" ","_")
+        send_file Upload.zip(dicoms, file_name), type: "application/zip", disposition: "attachement", filename: file_name
+      end
     end
 
-    flash[message_type] = message
-    redirect_to current_catalog
+    unless params[:commit] == "Download"
+      flash[message_type] = message
+      redirect_to current_catalog
+    end
   end
 
   def load_dicom
