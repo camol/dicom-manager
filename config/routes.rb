@@ -1,5 +1,16 @@
 DicomManager::Application.routes.draw do
 
+	 resources :messages, :only => [:new, :create] do
+	   collection do
+	     get 'token' => 'messages#token', :as => 'token'
+	     post 'empty/:messagebox' => 'messages#empty', :as => 'empty'
+	     put 'update' => 'messages#update'
+	     get ':messagebox/show/:id' => 'messages#show', :as => 'show', :constraints => { :messagebox => /inbox|outbox|trash/ }
+	     get '(/:messagebox)' => 'messages#index', :as => 'box', :constraints => { :messagebox => /inbox|outbox|trash/ }
+	   end
+	 end
+
+
   devise_for :users, controllers: { registrations: "users/registrations" }
 
   namespace :admin do

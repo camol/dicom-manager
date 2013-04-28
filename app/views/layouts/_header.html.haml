@@ -43,6 +43,9 @@
                 %li
                   = link_to "Projects", admin_projects_path
       %ul.nav.pull-right
+        - unless current_user.nil?
+          %li
+            = link_to "inbox(#{current_user.inbox(:opened => false).count})", messages_path(:inbox), :id => "inbox-link"
         %li
           = link_to "Home", root_path
         %li

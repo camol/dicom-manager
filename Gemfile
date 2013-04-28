@@ -2,8 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 gem 'bootstrap-sass'
-gem 'will_paginate', '3.0.3'
-gem 'bootstrap-will_paginate', '0.0.6'
 gem 'devise'
 gem 'haml-rails'
 gem 'role-haml'
@@ -18,6 +16,8 @@ gem 'cancan'
 gem 'easy_roles'
 gem 'dicom'
 gem 'rubyzip'
+gem "has_messages_generators"
+gem 'has_messages'
 
 group :development do
   gem 'annotate', '~> 2.4.1.beta'
@@ -58,3 +58,7 @@ end
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+gem "jquery-rails"
+gem "kaminari"
+gem "ancestry"
