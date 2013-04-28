@@ -4,6 +4,10 @@ jQuery.fn.exists = ->
 $ ->
   $("a.side-link").click ->
     $("a.side-link i").toggleClass "icon-chevron-right icon-chevron-left"
+    if $(this).parent().hasClass('side-on') && $('.switched-on').exists()
+      $('.switched-on').popover('toggle')
+      $('.switched-on').removeClass 'active'
+      $('.switched-on').removeClass 'switched-on'
     $("#arrow").toggleClass "side-off side-on", 400
     $("#sidebar-menu").animate
       width: "toggle"
@@ -12,7 +16,7 @@ $ ->
     $("div.sidebar-title").animate
       left: "toggle"
     , 100
-    $("div.sidebar-title").toggleClass "hide" 
+    $("div.sidebar-title").toggleClass "hide"
 
 
     if $('.btn-popover').exists()

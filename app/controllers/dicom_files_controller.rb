@@ -2,7 +2,6 @@ class DicomFilesController < ApplicationController
   before_filter :load_dicom, except: [:create, :manage]
 
   def create
-    p params
     @dicom_file = current_catalog.dicom_files.new(params[:dicom_file])
     @dicom_file.save
     render json: [@dicom_file].to_json and return

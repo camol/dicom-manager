@@ -20,8 +20,8 @@
         %a.btn.btn-popover{ :href => "#", rel: 'popover', data: { 'popover_content_selector' => '.move_cat_form', placement: 'right', 'original-title' => "Move to resource" } }
           %i.icon-cut
           Move to
-    %li.last-item
-      = link_to '<i class = "icon-trash"></i> Delete'.html_safe, current_catalog, method: :delete, confirm: "You will lose all data which this catalog contains (folders and files). Are You sure?", class: 'btn btn-danger' 
+      %li.last-item
+        = link_to '<i class = "icon-trash"></i> Delete'.html_safe, current_catalog, method: :delete, confirm: "You will lose all data which this catalog contains (folders and files). Are You sure?", class: 'btn btn-danger' 
     = render 'shared/modal'
     - unless current_catalog.is_root?
       %li.side-nav-header
