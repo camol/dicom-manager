@@ -7,7 +7,7 @@
           %span.btn.fileinput-button
             %i.icon-plus
             %span Add files...
-            = f.file_field :dicom
+            = f.file_field :dicom, multiple: true, name: "dicom_file[dicom]"
           %button.btn.start{ type: 'submit' }
             %i.icon-upload
             %span Start upload
