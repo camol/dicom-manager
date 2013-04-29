@@ -28,6 +28,8 @@
                 = link_to "History", '#'
               %li
                 = link_to "Edit", edit_user_registration_path
+              %li
+                = link_to "Join Group", admission_request_messages_path
           - if current_user.admin?
             %li.dropdown
               %a.dropdown-toggle#manage@button{:href => "#",:data => {:toggle => "dropdown"}}

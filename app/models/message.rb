@@ -15,7 +15,7 @@ class Message < ActiveRecord::Base
                   :copies,
                   :parent_id
 
-  validates_presence_of :user_id, :sender_id, :recipient_id, :subject_id, :subject, :content
+  validates_presence_of :user_id, :sender_id, :recipient_id, :subject_id, :subject
 
   def self.sequence_subject_id
     id = self.maximum(:subject_id).to_i

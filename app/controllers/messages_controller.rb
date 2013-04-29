@@ -30,6 +30,26 @@ class MessagesController < ApplicationController
     end
 	end
 
+  def admission_request
+    @new_groups = Group.where('id NOT IN (?)', current_user.groups + current_user.created_groups)
+  end
+
+  def send_admission_request
+    if params[:admission_request][:project_id]
+      recipient = Project.find(params[:admission_request][:project_id])
+    else
+      recipient = Group.find(params[:admission_request][:group_id])
+      subject = "### #{current_user.full_name} (User) join request. Group #{recipient.name} <#{recipient.id}> ###"
+    end
+
+    if current_user.send_message?(recipients: [recipient.author], subject_id: nil, subject: subject, content: '', parent_id: nil)
+      flash[:success] = "Successfully send join request."
+    else
+      flash[:error] = "Could not send the request."
+    end
+    redirect_to root_path
+  end
+
 	def new
 	end
 
@@ -50,8 +70,8 @@ class MessagesController < ApplicationController
 
 	def update
     unless params[:messages].nil?
-      message = current_user.send(params[:messagebox]).find(params[:messages])
-      message.each do |message|
+      _message = current_user.send(params[:messagebox]).find(params[:messages])
+      _message.each do |message|
         messages = message.root.subtree
         if params[:option].downcase == "read"
           read_unread_messages(true,*messages)

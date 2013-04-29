@@ -2,6 +2,8 @@ DicomManager::Application.routes.draw do
 
 	 resources :messages, :only => [:new, :create] do
 	   collection do
+       get 'admission_request'
+       post 'send_admission_request'
 	     get 'token' => 'messages#token', :as => 'token'
 	     post 'empty/:messagebox' => 'messages#empty', :as => 'empty'
 	     put 'update' => 'messages#update'

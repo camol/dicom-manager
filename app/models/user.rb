@@ -113,6 +113,7 @@ class User < ActiveRecord::Base
   def send_message(options)
     unless options[:recipients].nil?
       transaction do
+
         recipients = options[:recipients]
         options.delete(:recipients)
 
@@ -126,7 +127,7 @@ class User < ActiveRecord::Base
           options[:copies] = true
           Message.create(options)
           # => create message
-          options[:user_id] = rec.id 
+          options[:user_id] = rec.id
           options[:sender_id] = self.id
           options[:recipient_id] = rec.id
           options[:copies] = false

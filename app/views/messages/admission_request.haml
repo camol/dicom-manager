@@ -1,0 +1,4 @@
+.row-fluid
+  = simple_form_for :admission_request, url: send_admission_request_messages_path, method: :post do |f|
+    = f.input :group_id, label: "Choose group you would like to join:", collection: @new_groups, label_method: :name, value_method: :id, include_blank: false
+    = f.button :submit, "Send request", class: "btn btn-primary"
