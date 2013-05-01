@@ -37,17 +37,58 @@ class MessagesController < ApplicationController
   def send_admission_request
     if params[:admission_request][:project_id]
       recipient = Project.find(params[:admission_request][:project_id])
+      group = Group.find(params[:admission_request][:group_id])
+      request = "G:#{group.id}:#{recipient.id}"
+      subject = "### #{group.name} (Group) join request for #{recipient.name} (Project) ###"
     else
       recipient = Group.find(params[:admission_request][:group_id])
-      subject = "### #{current_user.full_name} (User) join request. Group #{recipient.name} <#{recipient.id}> ###"
+      request = "U:#{current_user.id}:#{recipient.id}"
+      subject = "### #{current_user.full_name} (User) join request for #{recipient.name} (Group) ###"
     end
 
-    if current_user.send_message?(recipients: [recipient.author], subject_id: nil, subject: subject, content: '', parent_id: nil)
+    if current_user.send_message?(recipients: [recipient.author], subject_id: nil, subject: subject, content: '', parent_id: nil, request: request )
       flash[:success] = "Successfully send join request."
     else
       flash[:error] = "Could not send the request."
     end
     redirect_to root_path
+  end
+
+  def act_admission_request
+    req = Message.find(params[:id])
+    req_params = req.request.split(':')
+
+    case req_params[0]
+    when "U"
+      req_author = User.find(req_params[1])
+      req_target = Group.find(req_params[2])
+      resource = " "
+    else
+      req_author = Group.find(req_params[1])
+      req_target = Project.find(req_params[2])
+      resource = " #{req_author.name} (#{req_author.class.to_s}) "
+    end
+
+    if params[:decision] == 'accept'
+      past_tense = "ed"
+
+      case req_params[0]
+      when "U"
+        req_author.groups << req_target
+      else
+        past_tense = "d"
+        req_author.projects << req_target
+      end
+    else
+      past_tense = "d"
+    end
+
+    subject = "#{params[:decision].titleize + past_tense} your request for joining" + resource + "to #{req_target.name} (#{req_target.class.to_s})"
+    p subject
+    current_user.send_message?(recipients: [req.sender], subject_id: nil, subject: subject, content: subject, parent_id: nil)
+    req.update_column(:opened, true)
+
+    redirect_to messages_path(:inbox)
   end
 
 	def new

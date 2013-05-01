@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
   def create
     group = @assign_current_user ? current_user.groups.build(params[:group]) : Group.new(params[:group])
 
-    if current_user.save && group.save
+    if @assign_current_user ? current_user.save : group.save
       flash[:success] = "Group created"
     else
       flash[:failure] = "Failed to create group"

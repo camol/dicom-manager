@@ -1,6 +1,7 @@
 DicomManager::Application.routes.draw do
 
 	 resources :messages, :only => [:new, :create] do
+     post 'act_admission_request', on: :member
 	   collection do
        get 'admission_request'
        post 'send_admission_request'

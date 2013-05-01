@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428193411) do
+ActiveRecord::Schema.define(:version => 20130501110846) do
 
   create_table "catalogs", :force => true do |t|
     t.string   "name"
@@ -73,12 +73,14 @@ ActiveRecord::Schema.define(:version => 20130428193411) do
     t.integer  "subject_id"
     t.string   "subject"
     t.text     "content"
-    t.boolean  "opened",       :default => false
-    t.boolean  "deleted",      :default => false
-    t.boolean  "copies",       :default => false
+    t.boolean  "opened",           :default => false
+    t.boolean  "deleted",          :default => false
+    t.boolean  "copies",           :default => false
     t.string   "ancestry"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "request"
+    t.boolean  "request_accepted", :default => false
   end
 
   add_index "messages", ["user_id", "subject_id", "ancestry"], :name => "messages_idx"

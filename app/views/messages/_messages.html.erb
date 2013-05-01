@@ -40,8 +40,13 @@
 		<tr class="<%= style -%>">
 			<td><%= check_box_tag "[messages][]", message.id %></td>
         <td><%= display_names %></td>
-        <%- if message.subject.count('#') == 6 %>
-          <td><%= message.subject %></td>
+        <%- if message.is_request? %>
+          <td>
+            <%= message.subject %>
+            <%- unless message.opened? %>
+              <%= render partial: "act_request", locals: { message: message } %>
+            <%- end %>
+          </td>
         <%- else %>
           <td><%= link_to message.subject, show_messages_path(@messagebox, message.id) %></td>
         <%- end %>

@@ -3,6 +3,7 @@ class Message < ActiveRecord::Base
   has_ancestry
 
   belongs_to :user, :class_name => "User"
+  belongs_to :sender, class_name: "User", foreign_key: 'sender_id', validate: true
 
   attr_accessible :user_id,
                   :sender_id,
@@ -13,7 +14,8 @@ class Message < ActiveRecord::Base
                   :opened,
                   :deleted,
                   :copies,
-                  :parent_id
+                  :parent_id,
+                  :request
 
   validates_presence_of :user_id, :sender_id, :recipient_id, :subject_id, :subject
 
@@ -30,6 +32,10 @@ class Message < ActiveRecord::Base
       parent_id = nil
     end
     parent_id
+  end
+
+  def is_request?
+    self.request.present?
   end
 
   def read?
