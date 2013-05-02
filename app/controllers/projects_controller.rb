@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @available_groups = (@project.groups + current_user.created_groups).uniq
   end
 
   def new

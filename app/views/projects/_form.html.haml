@@ -8,7 +8,7 @@
         = f.button :submit, :class => 'btn-primary'
       - unless @project.new_record?
         .span6
-          = f.association :groups, collection: @project.groups, as: :check_boxes, label: "Assigned groups:", wrapper_html: { class: 'my-checkboxes' }
+          = f.association :groups, collection: @available_groups, as: :check_boxes, label: "Assigned groups:", wrapper_html: { class: 'my-checkboxes' }
 
 
 

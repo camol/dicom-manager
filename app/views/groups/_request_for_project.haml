@@ -1,0 +1,6 @@
+.row-fluid
+  = simple_form_for :admission_request, url: send_admission_request_messages_path, method: :post, html: { style: "display: inline;" } do |f|
+    = f.hidden_field :group_id, value: @group.id
+    = f.input :project_id, label: "Choose project you would like to join this group to:", collection: @new_projects, label_method: :name, value_method: :id, include_blank: false
+    = f.button :submit, "Send request", class: "btn btn-primary"
+

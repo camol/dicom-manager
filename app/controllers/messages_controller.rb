@@ -31,19 +31,22 @@ class MessagesController < ApplicationController
 	end
 
   def admission_request
-    @new_groups = Group.where('id NOT IN (?)', current_user.groups + current_user.created_groups)
+    @new_groups = Group.where('id NOT IN (?)', (current_user.groups + current_user.created_groups).uniq)
   end
 
   def send_admission_request
-    if params[:admission_request][:project_id]
+    if params[:admission_request][:project_id].present?
       recipient = Project.find(params[:admission_request][:project_id])
       group = Group.find(params[:admission_request][:group_id])
       request = "G:#{group.id}:#{recipient.id}"
-      subject = "### #{group.name} (Group) join request for #{recipient.name} (Project) ###"
-    else
+      subject = "### #{group.name} (Group) join request for '#{recipient.name}' (Project) ###"
+    elsif params[:admission_request][:group_id].present?
       recipient = Group.find(params[:admission_request][:group_id])
       request = "U:#{current_user.id}:#{recipient.id}"
-      subject = "### #{current_user.full_name} (User) join request for #{recipient.name} (Group) ###"
+      subject = "### #{current_user.full_name} (User) join request for '#{recipient.name}' (Group) ###"
+    else
+      flash[:error] = "Can not send empty request"
+      redirect_to :back
     end
 
     if current_user.send_message?(recipients: [recipient.author], subject_id: nil, subject: subject, content: '', parent_id: nil, request: request )
@@ -66,7 +69,7 @@ class MessagesController < ApplicationController
     else
       req_author = Group.find(req_params[1])
       req_target = Project.find(req_params[2])
-      resource = " #{req_author.name} (#{req_author.class.to_s}) "
+      resource = " '#{req_author.name}' (#{req_author.class.to_s}) "
     end
 
     if params[:decision] == 'accept'
@@ -83,7 +86,7 @@ class MessagesController < ApplicationController
       past_tense = "d"
     end
 
-    subject = "#{params[:decision].titleize + past_tense} your request for joining" + resource + "to #{req_target.name} (#{req_target.class.to_s})"
+    subject = "#{params[:decision].titleize + past_tense} your request for joining" + resource + "to '#{req_target.name}' (#{req_target.class.to_s})"
     p subject
     current_user.send_message?(recipients: [req.sender], subject_id: nil, subject: subject, content: subject, parent_id: nil)
     req.update_column(:opened, true)

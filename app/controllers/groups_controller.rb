@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @new_projects = Project.where("id NOT IN (?)", (current_user.created_projects + @group.projects).uniq)
   end
 
   def edit

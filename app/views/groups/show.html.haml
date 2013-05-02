@@ -33,11 +33,12 @@
             %td No projects
 
     - if can_manage?(@group)
+      = render "request_for_project"
       .form_actions
         = link_to "Edit group", edit_group_path(@group), class: 'btn'
 
   .span6
-    - if can_manage?(@group)
+    - if @group.created_by? current_user
       %div
         Users:
       - if @group.users.any?
