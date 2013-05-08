@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   model_stamper
 
   easy_roles :roles
-  ROLES = %w[project_manager, group_manager, catalog_manager]
+  ROLES = %w[project_manager group_manager]
 
 
   # Virtual attribute for sign with email or login

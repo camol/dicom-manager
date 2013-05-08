@@ -20,7 +20,7 @@
     - @projects.each do |project|
       %tr
         %td= project.id
-        %td= project.name
+        %td= display_title project
         %td= project.description
         %td= project.created_at
         %td= project.updated_at

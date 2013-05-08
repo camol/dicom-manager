@@ -38,7 +38,7 @@
         = link_to "Edit group", edit_group_path(@group), class: 'btn'
 
   .span6
-    - if @group.created_by? current_user
+    - if can_manage? @group
       %div
         Users:
       - if @group.users.any?

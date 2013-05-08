@@ -13,6 +13,10 @@ class DicomFilesController < ApplicationController
   def update
   end
 
+  def show
+    @image = @dicom.dcm.image
+  end
+
   def manage
     files_ids = params[:dicom_files][:files].split(',')
     target = params[:dicom_files][:target_catalog]
@@ -39,6 +43,7 @@ class DicomFilesController < ApplicationController
       unless dicoms.empty?
         file_name = current_catalog.name.squish.downcase.tr(" ","_")
         send_file Upload.zip(dicoms, file_name), type: "application/zip", disposition: "attachement", filename: file_name
+        FileUtils.rm file_name + '.zip'
       end
     end
 

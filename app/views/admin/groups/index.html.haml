@@ -20,7 +20,7 @@
     - @groups.each do |group|
       %tr
         %td= group.id
-        %td= group.name
+        %td= display_title group
         %td= group.description
         %td= group.created_at
         %td= group.updated_at

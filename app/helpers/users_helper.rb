@@ -28,4 +28,12 @@ module UsersHelper
     end
     has_permission
   end
+
+  def can_create?(resource_name)
+    unless current_user.admin?
+      current_user.send("is_#{resource_name}_manager?".to_sym)
+    else
+      true
+    end
+  end
 end

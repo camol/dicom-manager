@@ -19,4 +19,8 @@ module ApplicationHelper
   def current_namespace
     params[:controller].split('/').first
   end
+
+  def display_title(object)
+    object.created_by?(current_user) ? "#{object.name} (Owned)" : object.name
+  end
 end

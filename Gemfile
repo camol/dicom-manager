@@ -15,6 +15,7 @@ gem 'userstamp', :git => "git://github.com/delynn/userstamp.git"
 gem 'cancan'
 gem 'easy_roles'
 gem 'dicom'
+gem 'rmagick', '~> 2.13.2'
 gem 'rubyzip'
 gem "has_messages_generators"
 gem 'has_messages'

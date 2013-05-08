@@ -19,7 +19,7 @@ class Catalog < ActiveRecord::Base
   # Asign nested structure
   has_ancestry
 
-  attr_accessible :description, :name
+  attr_accessible :description, :name, :creator_id, :updater_id, :catalogable
   attr_accessor :target_catalog
 
   # Relationships

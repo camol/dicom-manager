@@ -25,7 +25,7 @@ class Group < ActiveRecord::Base
 
   accepts_nested_attributes_for :groups_projects
 
-  attr_accessible :name, :description, :catalog_creation
+  attr_accessible :name, :description, :catalog_creation, :creator_id, :updater_id
   attr_accessor :assign_current_user
 
   after_create :create_root_catalog

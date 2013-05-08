@@ -14,6 +14,7 @@
 #  updater_id         :integer(4)
 #
 require 'dicom'
+require 'rmagick'
 
 class DicomFile < ActiveRecord::Base
   attr_accessible :dicom
@@ -44,8 +45,12 @@ class DicomFile < ActiveRecord::Base
     self.creator_id == user.id
   end
 
+  def dcm
+    DObject.read(self.dicom.path)
+  end
+
   def tags
-    DObject.read(self.dicom.path).to_hash
+    dcm.to_hash
   end
 
   def anonymize

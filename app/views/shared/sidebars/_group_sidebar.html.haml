@@ -1,6 +1,7 @@
-%li.side-nav-header
-  Group
-%li
-  %a.btn{ href: new_group_path }
-    %i.icon-group
-    New
+- if can_create? 'group'
+  %li.side-nav-header
+    Group
+  %li
+    %a.btn{ href: new_group_path }
+      %i.icon-group
+      New

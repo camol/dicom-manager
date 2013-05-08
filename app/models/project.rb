@@ -21,12 +21,12 @@ class Project < ActiveRecord::Base
   has_many :permissions, as: :permissionable
   has_one :root_catalog, class_name: "Catalog", as: :catalogable, conditions: { ancestry: nil }
 
-  attr_accessible :name, :description, :group_ids, :catalog_creation
+  attr_accessible :name, :description, :group_ids, :catalog_creation, :creator_id, :updater_id
 
   after_create :create_root_catalog
 
   def created_by?(user)
-    self.id == user.id
+    self.creator_id == user.id
   end
 
   def create_root_catalog

@@ -1,7 +1,8 @@
-%li.side-nav-header
-  Project
-%li
-  %a.btn{ href: new_project_path }
-    %i.icon-briefcase
-    New
+- if can_create? 'project'
+  %li.side-nav-header
+    Project
+  %li
+    %a.btn{ href: new_project_path }
+      %i.icon-briefcase
+      New
 
