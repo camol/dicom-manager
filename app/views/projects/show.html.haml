@@ -25,7 +25,7 @@
         %td
           - if @project.groups.any?
             - @project.groups.each do |g|
-              = g.name
+              = link_to g.name, group_path(g)
           - else
             No groups
 
