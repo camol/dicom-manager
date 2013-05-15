@@ -19,7 +19,7 @@ module UsersHelper
     has_permission = true
     unless current_user.admin?
       if current_catalog.catalogable_type == "User"
-        unless current_catalog == current_user.root_catalog
+        if current_catalog == current_user.root_catalog
           has_permission = false
         end
       else
