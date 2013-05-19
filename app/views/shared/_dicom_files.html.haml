@@ -4,7 +4,7 @@
       .catalog-content
         - @dicoms.each do |dicom|
           .element.file
-            = link_to image_tag('dicom.png', size: "45x60", class: 'folder', rel: 'tooltip', data: { placement: 'top', 'original-title' => "#{ number_to_human_size(dicom.dicom_file_size) }" }), catalog_dicom_file_path(current_catalog, dicom)
+            = link_to image_tag(icon_for(dicom), size: "45x60", style: "min-height: 57px;", class: 'folder', rel: 'tooltip', data: { placement: 'top', 'original-title' => "#{ number_to_human_size(dicom.dicom_file_size) }" }), catalog_dicom_file_path(current_catalog, dicom)
             %br
             = dicom.name
             = check_box_tag 'dicom_ids[]', dicom.id, false, id: "dicom-file-#{dicom.id}", class: 'file-checkbox'

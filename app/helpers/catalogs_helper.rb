@@ -24,4 +24,8 @@ module CatalogsHelper
       render 'catalogs/catalog_form', f: f
     end
   end
+
+  def icon_for(file)
+    file.dicom_thumb.present? ? file.dicom_thumb.url(:thumb) : 'dicom.png'
+  end
 end

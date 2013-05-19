@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130501110846) do
+ActiveRecord::Schema.define(:version => 20130519204042) do
 
   create_table "catalogs", :force => true do |t|
     t.string   "name"
@@ -33,11 +33,15 @@ ActiveRecord::Schema.define(:version => 20130501110846) do
     t.string   "dicom_content_type"
     t.integer  "dicom_file_size"
     t.datetime "dicom_updated_at"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.integer  "catalog_id"
     t.integer  "creator_id"
     t.integer  "updater_id"
+    t.string   "dicom_thumb_file_name"
+    t.string   "dicom_thumb_content_type"
+    t.integer  "dicom_thumb_file_size"
+    t.datetime "dicom_thumb_updated_at"
   end
 
   create_table "groups", :force => true do |t|
