@@ -13,3 +13,14 @@ $ ->
   $("a.dropdown-toggle").click (event) ->
     event.preventDefault()
     false
+
+$(window).scroll ->
+  if $(window).scrollTop() + $(window).height() is getDocHeight()
+    $('.footer').fadeOut('fast')
+  else
+    $('.footer').fadeIn('fast')
+
+
+getDocHeight = ->
+  D = document
+  Math.max Math.max(D.body.scrollHeight, D.documentElement.scrollHeight), Math.max(D.body.offsetHeight, D.documentElement.offsetHeight), Math.max(D.body.clientHeight, D.documentElement.clientHeight)
