@@ -68,11 +68,10 @@ class DicomFile < ActiveRecord::Base
     image = self.dcm.image(level: [self.dcm.value("0028,1050").to_i, self.dcm.value("0028,1051").to_i])
     if image
       thumb_path = self.store_path + 'thumb.png'
-      image.normalize.write(thumb_path)
-      thumb = Magick::Image.read(thumb_path).first.resize(100, 100)
-      thumb.write(thumb_path)
-      self.dicom_thumb = File.new(thumb_path)
+      image.resize(100, 100).normalize.write(thumb_path)
+      self.dicom_thumb = File.open(thumb_path)
       self.save
+      File.delete(thumb_path)
     end
   end
 
