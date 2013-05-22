@@ -22,9 +22,11 @@ class DicomFile < ActiveRecord::Base
   has_attached_file :dicom_thumb, :styles => { :thumb => ["60x60#", :png] }
   include DICOM
 
+  has_one :dicom_info
   belongs_to :catalog
   belongs_to :author, class_name: 'User', foreign_key: 'creator_id', validate: true
 
+  after_commit :store_info
   after_commit :anonymize, :unless => Proc.new{ self.dicom_content_type == "application/dicom" }
   after_commit :create_thumb, :unless => Proc.new{ self.dicom_content_type == "application/dicom" }
 
@@ -49,7 +51,7 @@ class DicomFile < ActiveRecord::Base
   end
 
   def dcm
-    DObject.read(self.dicom.path)
+    @dcm ||= DObject.read(self.dicom.path)
   end
 
   def tags
@@ -58,6 +60,12 @@ class DicomFile < ActiveRecord::Base
 
   def store_path
     self.dicom.path.match(/.*\//).to_s
+  end
+
+  def store_info
+    filled_info_hash = {}
+    DicomInfo::INFO_HASH.each{ |key, value| filled_info_hash[key] = dcm.value(value) }
+    create_dicom_info filled_info_hash
   end
 
   def anonymize
