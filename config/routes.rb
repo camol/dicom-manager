@@ -42,6 +42,7 @@ DicomManager::Application.routes.draw do
     post 'move', on: :member
     resources :dicom_files do
       post 'manage', on: :collection
+      get 'view', on: :member
     end
   end
 

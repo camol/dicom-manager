@@ -13,6 +13,10 @@ class DicomFilesController < ApplicationController
   def update
   end
 
+  def view
+    render json: [{ 'sopInstanceUID' => @dicom.dcm.value("0008,0018"), 'href' => @dicom.dicom.path }]
+  end
+
   def show
     @image = @dicom.dcm.image
   end
